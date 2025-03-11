@@ -1,0 +1,105 @@
+<div class="flex items-center justify-center w-full mt-[81px] px-[22px]">
+  <div class="max-w-[1000px] w-full">
+    <div class="font-SfBold sm:text-[44px] text-[24px] sm:mb-[54px] mb-[30px]">
+      @if(isEdit){
+      <input type="text" class="w-full" (change)="CustomTitleText($event)" [(ngModel)]="data.project_name" />
+      }@else{
+      {{ data.project_name }}
+      }
+    </div>
+    <div class="font-SfLight sm:text-[22px] text-[16px] mb-[54px] text-left ">
+      @if(isEdit){
+      <textarea type="text"
+        class="resize-none w-full border text-black font-SfLight font-normal text-[20px] flex justify-center !m-0 mac-screen-subtext mb-2"
+        (change)="CustomDescriptionText($event)" rows="5" cols="10" [(ngModel)]="data.project_description"></textarea>
+      }@else{
+      <p [innerHTML]="data.project_description" class=""></p>
+      }
+    </div>
+    <div class="h-full">
+      <div class="mb-[24px]">
+        <div class="font-SfLight sm:text-[22px] text-[16px]">
+          <p class="">
+            @if(data.project_year){
+            Year: @if(isEdit){
+            <input type="text" class="" (change)="CustomYearText($event)" [(ngModel)]="data.project_year" />
+            }@else{
+            {{ data.project_year }}
+            }
+            <br />
+            }
+            @if(data.project_client){
+            Client: @if(isEdit){
+            <input type="text" class="" (change)="CustomClientText($event)" [(ngModel)]="data.project_client" />
+            }@else{
+            {{ data.project_client }}
+            }
+            <br />
+            }
+            @if(data.project_built_up_area){
+            @if (route_name === "urbanism") {
+            @if(isEdit){
+            <!-- <input type="text" class="" (change)="CustomAreaText($event)" [(ngModel)]="data.area" />: <input type="text"
+              class="" (change)="CustomBuiltupAreaText($event)" [(ngModel)]="data.area" /> -->
+            <p-dropdown [options]="areaOptions" [(ngModel)]="data.area"
+              optionLabel="name"
+              placeholder="Select Area"
+              (onChange)="CustomAreaText($event)">
+            </p-dropdown>: <input type="text" class="" (change)="CustomBuiltupAreaText($event)"
+              [(ngModel)]="data.project_built_up_area" />
+            }@else{
+            {{data.area}}: {{ data.area }}
+            }
+            }
+            @else if(route_name === "architecture"){
+            @if(isEdit){
+            <!-- <input type="text" class="" (change)="CustomAreaText($event)" [(ngModel)]="data.area" />: <input type="text"
+              class="" (change)="CustomBuiltupAreaText($event)" [(ngModel)]="data.project_built_up_area" /> -->
+            <p-dropdown [options]="areaOptions" [(ngModel)]="data.area"
+              optionLabel="name"
+              placeholder="Select Area"
+              (onChange)="CustomAreaText($event)">
+            </p-dropdown>: <input type="text" class="" (change)="CustomBuiltupAreaText($event)"
+              [(ngModel)]="data.project_built_up_area" />
+            }@else{
+            {{data.area}}: {{ data.project_built_up_area }}
+            }
+            }
+            @else {
+            Built-up Area: {{ data.project_built_up_area }}
+            }
+            }
+          </p>
+        </div>
+      </div>
+    </div>
+    <!-- <div class="flex sm:flex-row flex-col items-center gap-[10px]">
+      @if(isEdit){
+      <a
+        class="flex justify-center items-center px-[20px] py-[4px] border bg-[#EBEBEB] text-[#1A1A1A] text-center font-SfLight text-[16px] min-h-[33px] rounded-full cursor-pointer">
+        <input type="text" class="" (change)="onTagChange($event)" [(ngModel)]="data.tags" />
+      </a>
+      }@else{
+      @for (item of data.tags; track $index) { @if(item.length){
+      <a
+        class="flex justify-center items-center px-[20px] py-[4px] border bg-[#EBEBEB] text-[#1A1A1A] text-center font-SfLight text-[16px] min-h-[33px] rounded-full cursor-pointer">
+        {{item}}
+      </a>
+      }}
+      }
+    </div> -->
+    <div class="flex sm:flex-row flex-col items-center gap-[10px]">
+      @if(isEdit){
+      <p-multiSelect [options]="proejctTags" [(ngModel)]="data.tags" optionLabel="name" placeholder="Select Tags" />
+      } @else {
+      @for (item of data.tags; track $index) {
+      <a
+        class="flex justify-center items-center px-[20px] py-[4px] border bg-[#EBEBEB] text-[#1A1A1A] text-center font-SfLight text-[16px] min-h-[33px] rounded-full cursor-pointer">
+        {{ item.name }}
+      </a>
+      }
+      }
+    </div>
+
+  </div>
+</div>

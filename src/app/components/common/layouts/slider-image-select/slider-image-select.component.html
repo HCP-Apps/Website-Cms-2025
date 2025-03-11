@@ -1,0 +1,64 @@
+<div class="croper-dialog">
+    <p-dialog header="Header" [(visible)]="isVisible" [modal]="true"
+        [style]="{ width: '1320px', 'max-height': '700px' }" draggable="false" [closable]="false">
+
+        <ng-template pTemplate="header">
+            <div class="flex items-center justify-center w-full">
+                <div class="flex w-full items-center justify-between">
+                    <div class="font-SfLight text-[20px]">
+                        Please Select:
+                    </div>
+                    <div class="flex">
+                        <p-button [text]="true" [plain]="true" (onClick)="closeDialog()">
+                            <fa-icon [icon]="faCross"></fa-icon>
+                        </p-button>
+                    </div>
+                </div>
+            </div>
+        </ng-template>
+
+        <div class="flex items-center grid-cols-3 gap-[15px] flex-wrap">
+            <ng-container *ngFor="let item of selectedImageData; let i = index">
+
+                <label for="{{ 'image-input-' + i }}" class="cursor-pointer">
+                    <div class="relative group">
+                        <div
+                            class="flex justify-end gap-[10px] m-[10px] rounded-sm top-0 right-0 absolute text-white z-[1]">
+                            <button mat-flat-button color="primary"
+                                [ngStyle]="{ 'background-color': '#1976D2','width':'50px','padding':'10px','border-radius':'4px' }"
+                                (click)="openDeleteImage(i)">
+                                <fa-icon [icon]="faTrash"></fa-icon>
+                            </button>
+                        </div>
+                        <div *ngIf="item.image; else uploadImage">
+                            <img [src]="isBase64(item.image) ? item.image : imageUrl + item.image" loading="lazy"
+                                lazyLoad class="w-[355.547px] h-[200px] gradient drawings-aa img-list" />
+                        </div>
+                        <ng-template #uploadImage>
+                            <div
+                                class="w-[355.547px] h-[200px] border flex items-center justify-center font-SfRegular text-[16px] font-normal">
+                                Upload Image
+                            </div>
+                        </ng-template>
+                        <div
+                            class="absolute inset-0 flex items-center justify-center text-white opacity-0 group-hover:opacity-50 text-[40px] font-bold group-hover:bg-black bg-opacity-25">
+                            1920px X 888px
+                        </div>
+                    </div>
+                    <input type="file" (change)="setImage($event, i)" accept="image/*" [id]="'image-input-' + i"
+                        class="hidden absolute inset-0 opacity-0 cursor-pointer" />
+                </label>
+                <input [(ngModel)]="item.drawing_captions" placeholder="Edit caption" class="w-full"
+                    (change)="updateCaption($event, i)" />
+            </ng-container>
+        </div>
+
+        <div class="flex justify-center mt-4">
+            <p-button label="Add New Image" icon="pi pi-plus" (onClick)="addNewImage()"></p-button>
+        </div>
+
+        <ng-template pTemplate="footer">
+            <app-button (btnClick)="SaveDialog()" btnLabel="Save"></app-button>
+        </ng-template>
+    </p-dialog>
+</div>

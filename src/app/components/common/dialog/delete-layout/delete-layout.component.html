@@ -1,0 +1,28 @@
+<div class="croper-dialog">
+    <p-dialog header="Header" [(visible)]="isVisible" [modal]="true"
+        [style]="{ width: '400px', 'max-height': '400px' }" draggable="false" [closable]="false">
+
+        <ng-template pTemplate="header">
+            <div class="flex items-center justify-center w-full">
+                <div class="flex w-full items-center justify-between">
+                    <div class="text-[20px] font-SfBold">
+                        Delete Layout
+                    </div>
+                    <div class="">
+                        <p-button [text]="true" [plain]="true" (onClick)="closeDialog()">
+                            <fa-icon [icon]="faCross"></fa-icon>
+                        </p-button>
+                    </div>
+                </div>
+            </div>
+        </ng-template>
+
+        <ng-template pTemplate="body">
+            <div class="text-[18px]">Are you sure you want to delete this layout?</div>
+        </ng-template>
+        <ng-template pTemplate="footer">
+            <app-button (btnClick)="closeDialog()" btnLabel="Cancel"></app-button>
+            <app-button (btnClick)="DeleteLayout()" btnLabel="Delete"></app-button>
+        </ng-template>
+    </p-dialog>
+</div>

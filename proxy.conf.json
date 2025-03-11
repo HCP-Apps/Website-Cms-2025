@@ -1,0 +1,8 @@
+{
+    "/api": {
+      "target": "https://hcpinteractive.com",
+      "secure": false,
+      "changeOrigin": true
+    }
+  }
+  

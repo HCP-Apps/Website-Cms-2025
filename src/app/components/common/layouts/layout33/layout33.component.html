@@ -1,0 +1,70 @@
+<div class="xl:flex xl:flex-row flex-col justify-between items-center gap-x-[22px]">
+    <div class="xl:w-[66.882%] w-full lg:mb-0 mb-[22px] gradient" >
+      <label for="{{ id }}" class="cursor-pointer">
+        @if(layout.image.endsWith('.mp4')){
+          <video #videoPlayer1 class="w-full h-auto" autoplay [attr.autoplay]="true" loop muted="true">
+            <source [src]="imageUrl + layout.image" type="video/mp4" />
+          </video>
+        }
+        @else if (layout.image) {
+        <img
+          [src]="imageUrl + layout.image"
+          [alt]="layout.alt_text"
+          class="w-full h-auto"
+          loading="lazy" lazyLoad
+        />
+        } @else {
+        <div
+          class="xl:w-[66.882%] w-full border flex items-center justify-center font-SfRegular text-[16px] font-normal"
+        >
+          Upload Image
+        </div>
+        }
+        <input
+          type="file"
+          (change)="openCropperDialog($event)"
+          accept="image/*, video/mp4"
+          class="hidden absolute inset-0 opacity-0 cursor-pointer"
+          [id]="id"
+        />
+      </label>
+    </div>
+    <div class="flex xl:w-[33.117%] w-full h-full justify-center items-center">
+      <div class="h-full w-full lg:px-[5.2%]">
+      @if (isEdit) {
+      <div
+        class="flex flex-col items-center justify-center w-full px-[100px] py-[120px]"
+      >
+        <mat-label class="font-SfRegular text-[14px] font-normal"
+          >Title</mat-label
+        >
+        <input
+          type="text"
+          class="resize-none w-full border h-[40px] text-black !font-SfSemiBold sm:!mb-[20px] !mb-[25px] !text-[28px] !text-left flex justify-start items-start cursor-pointer mac-screen-text"
+          (change)="CustomTitleText($event)"
+          [(ngModel)]="layout.title"
+        />
+        <mat-label class="font-SfRegular text-[14px] font-normal">Description</mat-label>
+        <textarea
+          type="text"
+          class="resize-none w-full border text-black font-SfLight font-normal text-[20px] flex justify-center !m-0 mac-screen-subtext mb-2"
+          (change)="CustomText($event)"
+          rows="5"
+          cols="10"
+          [(ngModel)]="layout.description"
+        ></textarea>
+      </div>
+      } @else {
+          <div
+          class="text-black !font-SfSemiBold sm:!mb-[20px] !mb-[25px] !text-[28px] !text-left flex justify-start items-start w-full cursor-pointer mac-screen-text"
+          >
+            {{ layout.title }}
+          </div>
+          <p class="text-black font-SfLight font-normal text-[20px] flex justify-center !m-0 mac-screen-subtext">
+            {{ layout.description }}
+          </p>
+      }
+      </div>
+    </div>
+  </div>
+  

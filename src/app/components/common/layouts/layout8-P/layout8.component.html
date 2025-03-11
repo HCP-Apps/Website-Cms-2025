@@ -1,0 +1,41 @@
+<div class="px-3 py-0">
+  <div class="font-SfBold text-[22px] my-[15px] text-center">More {{name}}</div>
+  <div
+    class="flex sm:flex-row flex-col w-full gap-[1.5625%] mt-[54px] justify-center px-[11.30%]"
+  >
+  @for (item of data; track $index) {
+    @if(name === "Brochures" || name === "Exhibitions"){
+        <div class="col-span-1 row-span-1 w-full h-full group">
+        <!-- <div class="max-w-[475px] w-full cursor-pointer"> -->
+          <img
+            [src]="imageUrl + item.image"
+            loading="lazy"
+            alt=""
+            lazyLoad
+            class="aspect-[475/261] w-full object-contain object-left cursor-pointer"
+            (click)="navigate(item.project_id)"
+          />
+          <div class="my-[15px] text-left font-SfLight text-[22px]">
+            <p>{{ item.project_name }}</p>
+          </div>
+        </div>
+      }@else {
+        <div class="col-span-1 row-span-1 w-full h-full group">
+          <a  [routerLink]="['/', basePath, item.project_id]">
+          <img
+            [src]="imageUrl + item.image"
+            loading="lazy"
+            alt=""
+            lazyLoad
+            class="aspect-[475/261] w-full gradient cursor-pointer"
+            
+          />
+        </a>
+          <div class="my-[15px] text-left font-SfLight text-[22px]">
+            <p>{{ item.project_name }}</p>
+          </div>
+        </div>
+      }
+    }
+  </div>
+</div>

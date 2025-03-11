@@ -1,0 +1,93 @@
+<div
+  cdkDropList
+  cdkDropListLockAxis="y"
+  (cdkDropListDropped)="drop($event)"
+  class="space-y-[22px] px-[22px]"
+>
+  @for (layout of layouts; track $index) {
+  <div class="relative" cdkDrag [cdkDragDisabled]="draggable">
+    @if (isEdit) {
+    <div
+      class="flex justify-end gap-[10px] m-[10px] top-0 right-0 absolute text-white"
+    >
+      <div class="flex layouts-center font-SfRegular text-black h-[35px]">
+        <p>ALT TEXT</p>
+      </div>
+      <input
+        [(ngModel)]="layout.alt_text"
+        type="text"
+        class="px-1 border border-[#000] rounded-md font-SfRegular font-normal text-black"
+        placeholder="Alt Text"
+        (input)="handleAltTextChange($index, $event)"
+      />
+      <button
+        mat-flat-button
+        color="primary"
+        [ngStyle]="{ 'background-color': '#1976D2' }"
+        (mouseenter)="activeHover()"
+        (mouseleave)="inactiveHover()"
+      >
+        <fa-icon [icon]="faUpDown"></fa-icon>
+      </button>
+      <button
+        mat-flat-button
+        color="primary"
+        [ngStyle]="{ 'background-color': '#1976D2' }"
+        (click)="openEditLayoutDialog($index)"
+      >
+        <fa-icon [icon]="faPen"></fa-icon>
+      </button>
+      <button
+        mat-flat-button
+        color="primary"
+        [ngStyle]="{ 'background-color': '#1976D2' }"
+        (click)="onDelete($index)"
+      >
+        <fa-icon [icon]="faTrash"></fa-icon>
+      </button>
+    </div>
+    }
+    <div [ngClass]="{'border': isEdit}" >
+      @if (layout.layout_id === 0) {
+      <app-layout2
+        [isEdit]="isEdit"
+        (getFile)="getFile($event, $index)"
+        [id]="$index"
+        [layout]="layout"
+        (titleChange)="onTitleTextChange($index, $event)"
+        (descriptionChange)="onDescriptionTextChnage($index, $event)"
+      ></app-layout2>
+      }
+    </div>
+  </div>
+  }
+</div>
+@if (isEdit) {
+<div class="h-[25px] w-full flex justify-end px-[22px] mt-5 mb-5">
+  <button
+    class="bg-[#1565c0] w-[50px] h-[50px] !rounded-full text-white"
+    (click)="openAddLayoutDialog()"
+  >
+    +
+  </button>
+</div>
+}
+
+<!-- Popups -->
+<app-edit-layout
+  [isVisible]="isEditLayoutVisible"
+  (onCLick)="opneEditLayout()"
+  (selectLayout)="changeLayout(editIndex, $event)"
+></app-edit-layout>
+<app-layout-dialog
+  [isVisible]="isAddLayoutVisible"
+  (onCLick)="openAddLayoutDialog()"
+  (selectLayout)="layoutSelect($event)"
+></app-layout-dialog>
+<app-cropper-dialog
+  [data]="data"
+  [isVisible]="isCropperVisible"
+  (onCLick)="openAddLayoutDialog()"
+  (getFile)="openAddLayoutDialog()"
+  (saveCrop)="saveCropper($event)"
+></app-cropper-dialog>

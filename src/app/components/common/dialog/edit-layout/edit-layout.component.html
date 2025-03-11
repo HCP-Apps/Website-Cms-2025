@@ -1,0 +1,32 @@
+<div class="croper-dialog">
+  <p-dialog
+    header="Header"
+    [(visible)]="isVisible"
+    [modal]="true"
+    [style]="{ width: '1110px', 'max-height': '560px' }"
+    draggable="false"
+    [closable]="false"
+  >
+    <ng-template pTemplate="header">
+      <div class="flex items-center justify-center w-full">
+        <div class="flex w-full items-center justify-between">
+          <div class="font-SfLight text-[20px]">
+            Please Edit any one of the following layouts:
+          </div>
+          <div class="">
+            <p-button [text]="true" [plain]="true" (onClick)="closeDialog()">
+              <fa-icon [icon]="faCross"></fa-icon>
+            </p-button>
+          </div>
+        </div>
+      </div>
+    </ng-template>
+    <div class="flex items-center grid-cols-3 gap-[15px] flex-wrap">
+      @for (item of layoutArray; track $index) {
+      <button class="border border-[#535353]" (click)="btnClick(item.layout_id)">
+        <img [src]="item.image" class="w-[250px]" />
+      </button>
+      }
+    </div>
+  </p-dialog>
+</div>

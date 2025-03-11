@@ -1,0 +1,229 @@
+<!-- <div class="flex space-x-[35px] w-full">
+  <div class="max-w-[1256px] w-full">
+    <label for="{{ id }}" class="cursor-pointer">
+      @if (layout.image_path_blob) {
+      <img
+        [src]="layout.image_path_blob"
+        alt=""
+        width="1227"
+        height="510"
+        class="max-w-[1227px] w-full max-h-[510px] h-full"
+      />
+      } @else {
+      <div
+        class="h-[510px] border flex items-center justify-center font-SfRegular text-[16px] font-normal"
+      >
+        Upload Image
+      </div>
+      }
+
+      <input
+        type="file"
+        (change)="openCropperDialog($event)"
+        accept="image/*"
+        class="hidden absolute inset-0 opacity-0 cursor-pointer"
+        [id]="id"
+      />
+    </label>
+  </div>
+  <div class="max-w-[614px] h-[510px] flex w-full justify-center items-center">
+    <div
+      class="flex flex-col items-center justify-center w-full px-[100px] py-[120px]"
+    >
+      <mat-label class="font-SfRegular text-[14px] font-normal"
+        >Title</mat-label
+      >
+      <input
+        type="text"
+        class="resize-none w-full border h-[40px] font-SfRegular text-[20px] font-bold"
+        (change)="CustomTitleText($event)"
+        [(ngModel)]="layout.title"
+      />
+      <mat-label class="font-SfRegular text-[14px] font-normal">Text</mat-label>
+      <textarea
+        type="text"
+        class="resize-none w-full border font-SfRegular text-[20px] font-normal mb-2"
+        (change)="CustomText($event)"
+        rows="10"
+        cols="10"
+        [(ngModel)]="layout.description"
+      ></textarea>
+
+      <input
+        type="email"
+        placeholder="Enter your email"
+        disabled
+        class="resize-none w-full border bg-[#F0F1F1] h-[40px] px-4"
+      />
+      <button
+        mat-flat-button
+        color="primary"
+        class="!bg-[#F0F1F1] !text-gray-400 w-full mt-[10px]"
+      >
+        Subscribe
+      </button>
+    </div>
+  </div>
+</div> -->
+
+<!-- <div class="flex space-x-[35px] w-full">
+  <div class="max-w-[1227px] w-full border">
+    <label for="{{ id }}" class="cursor-pointer">
+      @if (layout.image_path_blob) {
+      <img
+        [src]="imageUrl + layout.image_path_blob"
+        [alt]="layout.alt_text"
+        width="1227"
+        height="510"
+        class="max-w-[1227px] w-full max-h-[510px] h-full"
+      />
+      } @else {
+      <div
+        class="h-[510px] border flex items-center justify-center font-SfRegular text-[16px] font-normal"
+      >
+        Upload Image
+      </div>
+      }
+      <input
+        type="file"
+        (change)="openCropperDialog($event)"
+        accept="image/*"
+        class="hidden absolute inset-0 opacity-0 cursor-pointer"
+        [id]="id"
+      />
+    </label>
+  </div>
+  <div class="max-w-[614px] h-[510px] flex w-full justify-center items-center">
+    @if (isEdit) {
+    <div
+      class="flex flex-col items-center justify-center w-full px-[100px] py-[120px]"
+    >
+      <mat-label class="font-SfRegular text-[14px] font-normal"
+        >Title</mat-label
+      >
+      <input
+        type="text"
+        class="resize-none w-full border h-[40px] font-SfRegular text-[20px] font-bold"
+        (change)="CustomTitleText($event)"
+        [(ngModel)]="layout.title"
+      />
+      <mat-label class="font-SfRegular text-[14px] font-normal">Text</mat-label>
+      <textarea
+        type="text"
+        class="resize-none w-full border font-SfRegular text-[20px] font-normal mb-2"
+        (change)="CustomText($event)"
+        rows="5"
+        cols="10"
+        [(ngModel)]="layout.description"
+      ></textarea>
+
+      <input
+        type="email"
+        placeholder="Enter your email"
+        class="resize-none w-full border bg-[#F0F1F1] h-[40px] px-4"
+      />
+      <button
+        mat-flat-button
+        color="primary"
+        class="!bg-[#F0F1F1] !text-gray-400 !h-[40px] w-full mt-[10px]"
+      >
+        Subscribe
+      </button>
+    </div>
+    } @else {
+    <div
+      class="flex flex-col space-y-[60px] items-center justify-center w-full px-[100px] py-[120px]"
+    >
+      <div class="space-y-[60px] w-full flex flex-col text-center items-center ">
+        <div class="w-full font-SfRegular text-[28px] font-bold ">
+          {{ layout.title }}
+        </div>
+        <div class="w-full font-SfLight text-[20px] font-normal text-justify">
+          {{ layout.description }}
+        </div>
+      </div>
+
+      <div class="space-y-[20px] w-full">
+        <input
+          type="email"
+          placeholder="Enter your email"
+          class="resize-none w-full border bg-[#F0F1F1] h-[40px] px-4"
+        />
+        <button
+          mat-flat-button
+          color="primary"
+          class="!bg-[#F0F1F1] !text-gray-400 !h-[40px] w-full mt-[10px] text-left px-4"
+        >
+          Subscribe
+        </button>
+      </div>
+    </div>
+    }
+  </div>
+</div> -->
+
+
+<div class="xl:flex xl:flex-row flex-col justify-between items-center gap-x-[22px]">
+  <div class="xl:w-[66.882%] w-full lg:mb-0 mb-[22px] gradient" >
+    <label for="{{ id }}" class="cursor-pointer">
+      @if (layout.image_path_blob) {
+      <img
+        [src]="imageUrl + layout.image_path_blob"
+        [alt]="layout.alt_text"
+        class="w-full aspect-[2.398452] cursor-pointer"
+        loading="lazy" lazyLoad
+      />
+      } @else {
+      <div
+        class="xl:w-[66.882%] w-full border flex items-center justify-center font-SfRegular text-[16px] font-normal"
+      >
+        Upload Image
+      </div>
+      }
+      <input
+        type="file"
+        (change)="openCropperDialog($event)"
+        accept="image/*"
+        class="hidden absolute inset-0 opacity-0 cursor-pointer"
+        [id]="id"
+      />
+    </label>
+  </div>
+  <div class="flex xl:w-[33.117%] w-full h-full justify-center items-center">
+    <div class="h-full w-full lg:px-[5.2%]">
+    @if (isEdit) {
+    <div
+      class="flex flex-col items-center justify-center w-full px-[100px] py-[120px]"
+    >
+      <mat-label class="font-SfRegular text-[14px] font-normal"
+        >Title</mat-label
+      >
+      <input
+        type="text"
+        class="resize-none w-full border h-[40px] text-black !font-SfSemiBold sm:!mb-[20px] !mb-[25px] !text-[28px] !text-left flex justify-start items-start cursor-pointer mac-screen-text"
+        (change)="CustomTitleText($event)"
+        [(ngModel)]="layout.title"
+      />
+      <mat-label class="font-SfRegular text-[14px] font-normal">Description</mat-label>
+      <textarea
+        type="text"
+        class="resize-none w-full border text-black font-SfLight font-normal text-[20px] flex justify-center !m-0 mac-screen-subtext mb-2"
+        (change)="CustomText($event)"
+        rows="5"
+        cols="10"
+        [(ngModel)]="layout.description"
+      ></textarea>
+    </div>
+    } @else {
+        <div
+        class="text-black !font-SfSemiBold sm:!mb-[20px] !mb-[25px] !text-[28px] !text-left flex justify-start items-start w-full cursor-pointer mac-screen-text"
+        >
+          {{ layout.title }}
+        </div>
+        <p class="text-black font-SfLight font-normal text-[20px] flex justify-center !m-0 mac-screen-subtext">
+          {{ layout.description }}
+        </p>
+    }
+    </div>
+  </div>
+</div>

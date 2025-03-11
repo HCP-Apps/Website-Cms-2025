@@ -1,0 +1,43 @@
+<ngx-spinner bdColor="rgba(0, 0, 0, 0.8)" size="large" color="#fff" [fullScreen]="true">
+    <p style="color: white">Loading...</p>
+</ngx-spinner>
+<p-toast position="top-right"></p-toast>
+@if (isEdit) {
+<app-cms-topbar (preview)="changeMode()" (publish)="onPublish()"></app-cms-topbar>
+}
+<app-topbar [isSidebar]="isSideBar" [isEdit]="isEdit" (toogleSideBar)="sideBarToogle()" (preview)="changeMode()"
+    (publish)="onPublish()"></app-topbar>
+<div class="w-full flex items-center justify-between px-[22px]">
+    <div class="w-full press-dates">
+        <mat-form-field class="w-[200px] flex items-center pr-5">
+            <mat-label>Select Week</mat-label>
+            <mat-date-range-input [formGroup]="range" [rangePicker]="picker" [min]="minDate">
+                <input matStartDate formControlName="start" placeholder="Start date">
+                <input matEndDate formControlName="end" placeholder="End date">
+            </mat-date-range-input>
+            <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
+            <mat-date-range-picker #picker></mat-date-range-picker>
+        </mat-form-field>
+        <p-calendar [(ngModel)]="blockdates" selectionMode="multiple" [readonlyInput]="true" [showIcon]="true"
+            inputId="icondisplay" [iconDisplay]="'input'" [minDate]="minSelectableDate">
+            <label for="icondisplay">Select Block Dates</label>
+        </p-calendar>
+
+    </div>
+    <div class="w-full"><app-button btnLabel="Submit Date" (btnClick)="SubmitDate()"></app-button></div>
+</div>
+<div class="main-container">
+    <div class="w-full flex-1 mt-[10px]">
+        <!-- @if (isEdit) { -->
+        <app-press-builder [isAddLayoutVisible]="isAddLayoutPopupVisible" [activeIndex]="activeIndex"
+            [currentPressData]="currentPressData" (updatePressData)="updateCurrentPressData($event)"
+            [isEditLayoutVisible]="isEditLayoutPopupVisible" [isEdit]="isEdit" [filteredPressData]="filteredPressData"
+            (AddLayoutDialog)="openAddLayoutDialog()" (EditLayoutDialog)="openEditLayoutDialog()"
+            (editChangeLayout)="editLayout($event)" (deleteLayout)="deleteLayout($event)" (setImage)="setImage($event)"
+            (changeTitle)="changeTitle($event)" (addLayoutDialog)="openAddLayoutDialog()"
+            (addlayout)="addlayout($event)" (changeDescription)="chnageDescription($event)"
+            (changeAltText)="changeAlt($event)"></app-press-builder>
+    </div>
+    <app-footer></app-footer>
+    <router-outlet></router-outlet>
+</div>

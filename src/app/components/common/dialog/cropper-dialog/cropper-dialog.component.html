@@ -1,0 +1,51 @@
+<div class="min-w-full">
+  <p-dialog
+    header="Header"
+    [(visible)]="isVisible"
+    [modal]="true"
+    [style]="{ width: '580px', 'max-height': '650px' }"
+    draggable="false"
+    [closable]="false"
+  >
+    <ng-template pTemplate="header">
+      <div class="inline-flex align-items-center justify-content-center">
+        <p class="font-SfLight text-[20px]">Set Image</p>
+      </div>
+    </ng-template>
+    <div
+      class="flex justify-center items-center m-0 p-0 w-full"
+    >
+      <image-cropper
+        [imageFile]="data?.image"
+        [maintainAspectRatio]="true"
+        [aspectRatio]="1227/510"
+        [resizeToHeight]="510"
+        [resizeToWidth]="1227"
+        (imageCropped)="imageCropped($event)"
+        [format]="'jpeg'"
+      ></image-cropper>
+    </div>
+    <ng-template type="success" pTemplate="footer">
+      <div class="flex space-x-4 w-full mt-4 pl-[5px]">
+        <div>
+          <p-button
+            class="flex justify-start items-start"
+            mat-button
+            (click)="saveResult()"
+            cdkFocusInitial
+            >Done</p-button
+          >
+        </div>
+        <div class="w-[517px]">
+          <mat-form-field class="example-full-width w-full">
+            <mat-label>URL</mat-label>
+            <input type="text" matInput [matAutocomplete]="auto" />
+            <mat-autocomplete class="w-full" #auto="matAutocomplete">
+              <mat-option>ARCHITECHTURE</mat-option>
+            </mat-autocomplete>
+          </mat-form-field>
+        </div>
+      </div>
+    </ng-template>
+  </p-dialog>
+</div>

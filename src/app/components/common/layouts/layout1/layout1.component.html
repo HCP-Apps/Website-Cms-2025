@@ -1,0 +1,276 @@
+<!-- <div class="flex space-x-[35px] w-full">
+  <div class="max-w-[1240px] w-full">
+    <label for="{{ id }}" class="cursor-pointer">
+      @if (layout.image_path_blob) {
+      <img
+        [src]="layout.image_path_blob"
+        [alt]="layout.alt_text"
+        width="1227"
+        height="510"
+        class="!max-w-[1240px] w-full !max-h-[517px] h-full"
+      />
+      } @else {
+      <div
+        [ngClass]="{
+          'h-[517px] flex items-center justify-center font-SfRegular text-[16px] font-normal': true,
+          border: isEdit
+        }"
+      >
+        Upload Image
+      </div>
+      }
+      <input
+        type="file"
+        (change)="openCropperDialog($event)"
+        accept="image/*"
+        class="hidden absolute inset-0 opacity-0 cursor-pointer"
+        [id]="id"
+      />
+    </label>
+  </div>
+  <div class="max-w-[614px] h-[517px] flex w-full justify-center items-center">
+    @if (isEdit) {
+    <div
+      class="flex flex-col items-center justify-center w-full px-[100px] py-[120px]"
+    >
+      <mat-label class="font-SfRegular text-[14px] font-normal"
+        >Title</mat-label
+      >
+      <textarea
+        type="text"
+        class="resize-none w-full border h-[40px] font-SfRegular text-[20px] font-bold"
+        (input)="CustomTitleText($event)"
+        [(ngModel)]="layout.title"
+      ></textarea>
+      <mat-label class="font-SfRegular text-[14px] font-normal">Text</mat-label>
+      <textarea
+        type="text"
+        class="resize-none w-full border font-SfRegular text-[20px] font-normal mb-2"
+        (input)="CustomText($event)"
+        rows="10"
+        cols="10"
+        [(ngModel)]="layout.description"
+      ></textarea>
+    </div>
+    } @else {
+      <section class="md:flex items-center md:space-x-[22px] w-full"  data-aos="fade-up"
+      data-aos-easing="linear">
+        <div class="max-w-[1240px] w-full sm:h-[517px] sm:mb-0 mb-[10px]">
+          <img
+            [src]="layout.image_path_blob"
+            alt="{{ layout.alt_text }}"
+            class="max-w-[1240px] w-full max-h-[517px] h-full"
+          />
+        </div>
+        <div
+          class="max-w-[614px] sm:h-[517px] flex w-full justify-center items-center"
+        >
+          <div
+            class="flex flex-col items-center justify-center h-full w-full lg:px-[100px] lg:py-[120px] md:px-[70px] md:py-[70px] p-0"
+          >
+            <div
+              class="text-black !font-SfSemiBold sm:!mb-[50px] !mb-[25px] !text-[28px] !text-center flex justify-center items-center"
+            >
+              {{ layout.title }}
+            </div>
+            <p
+              class="text-black font-SfLight font-normal text-[20px] flex text-justify justify-center !m-0"
+            >
+              {{ layout.description }}
+            </p>
+          </div>
+        </div>
+      </section>
+    }
+  </div>
+</div> -->
+<!-- <div>
+  @if(isEdit) { asd } @else {
+  <section
+    class="md:flex items-center md:space-x-[22px] w-full"
+    data-aos="fade-up"
+    data-aos-easing="linear"
+  >
+    <div class="max-w-[1240px] w-full sm:h-[517px] sm:mb-0 mb-[10px]">
+      <img
+        [src]="layout.image_path_blob"
+        alt="{{ layout.alt_text }}"
+        class="max-w-[1240px] w-full max-h-[517px] h-full"
+      />
+    </div>
+    <div
+      class="max-w-[614px] sm:h-[517px] flex w-full justify-center items-center"
+    >
+      <div
+        class="flex flex-col items-center justify-center h-full w-full lg:px-[100px] lg:py-[120px] md:px-[70px] md:py-[70px] p-0"
+      >
+        <div
+          class="text-black !font-SfSemiBold sm:!mb-[50px] !mb-[25px] !text-[28px] !text-center flex justify-center items-center"
+        >
+          {{ layout.title }}
+        </div>
+        <p
+          class="text-black font-SfLight font-normal text-[20px] flex text-justify justify-center !m-0"
+        >
+          {{ layout.description }}
+        </p>
+      </div>
+    </div>
+  </section>
+  }
+</div> -->
+<!-- <div class="px-[22px] flex flex-col gap-[22px] w-full">
+  @for (item of homeLayouts; track $index) { @if(item.layout_id === "0"){
+  <section class="md:flex items-center md:space-x-[22px] w-full"  data-aos="fade-up"
+  data-aos-easing="linear">
+    <div class="max-w-[1240px] w-full sm:h-[517px] sm:mb-0 mb-[10px]">
+      <img
+        [src]="item.image_path_blob"
+        alt="{{ item.alt_text }}"
+        class="max-w-[1240px] w-full max-h-[517px] h-full"
+      />
+    </div>
+    <div
+      class="max-w-[614px] sm:h-[517px] flex w-full justify-center items-center"
+    >
+      <div
+        class="flex flex-col items-center justify-center h-full w-full lg:px-[100px] lg:py-[120px] md:px-[70px] md:py-[70px] p-0"
+      >
+        <div
+          class="text-black !font-SfSemiBold sm:!mb-[50px] !mb-[25px] !text-[28px] !text-center flex justify-center items-center"
+        >
+          {{ item.title }}
+        </div>
+        <p
+          class="text-black font-SfLight font-normal text-[20px] flex text-justify justify-center !m-0"
+        >
+          {{ item.description }}
+        </p>
+      </div>
+    </div>
+  </section>
+  } @else {
+  <section class="md:flex items-center md:space-x-[22px] w-full"  data-aos="fade-up"
+  data-aos-easing="linear">
+    <div class="max-w-[1240px] w-full sm:h-[517px] sm:mb-0 mb-[10px]">
+      <img
+        [src]="item.image_path_blob"
+        alt=""
+        class="max-w-[1240px] w-full max-h-[517px] h-full"
+      />
+    </div>
+    <div
+      class="max-w-[614px] sm:h-[517px] flex w-full justify-center items-center"
+    >
+      <div
+        class="flex flex-col items-center justify-center h-full w-full lg:px-[100px] lg:py-[120px] md:px-[70px] md:py-[70px] p-0"
+      >
+        <div
+          class="text-black !font-SfSemiBold sm:!mb-[60px] !mb-[25px] !text-[28px] !text-center flex justify-center items-center"
+        >
+          {{ item.title }}
+        </div>
+        <p
+          class="text-black font-SfLight font-normal sm:text-[22px] text-[14px] text-center !m-0 !mb-[60px] w-[300px] leading-[25px]"
+        >
+          {{ item.description }}
+        </p>
+        <input
+          type="email"
+          placeholder="Email Address"
+          disabled
+          class="w-full border bg-[#F0F1F1] h-[33px] px-4 mb-[20px]"
+        />
+        <button
+          mat-flat-button
+          color="primary"
+          class="!bg-[#F0F1F1] !text-gray-400 w-full h-[33px]"
+        >
+          Subscribe
+        </button>
+      </div>
+    </div>
+  </section>
+  }}
+</div> -->
+<div class="flex !h-[517px] w-full">
+  @if (isEdit) {
+  <div class="max-w-[1240px] w-full">
+    <label for="{{ id }}" class="cursor-pointer">
+      @if (layout.image_path_blob) {
+      <img
+        [src]="imageUrl + layout.image_path_blob"
+        [alt]="layout.alt_text"
+        width="1227"
+        height="510"
+        class="!max-w-[1240px] w-full !max-h-[517px] h-full"
+      />
+      } @else {
+      <div
+        [ngClass]="{
+          'h-[517px] flex items-center justify-center font-SfRegular text-[16px] font-normal': true,
+          border: isEdit
+        }"
+      >
+        Upload Image
+      </div>
+      }
+      <input
+        type="file"
+        (change)="openCropperDialog($event)"
+        accept="image/*"
+        class="hidden absolute inset-0 opacity-0 cursor-pointer"
+        [id]="id"
+      />
+    </label>
+  </div>
+  <div class="max-w-[614px] h-[517px] flex w-full justify-center items-center">
+    <div
+      class="flex flex-col items-center justify-center w-full px-[100px] py-[120px]"
+    >
+      <mat-label class="font-SfRegular text-[14px] font-normal"
+        >Title</mat-label
+      >
+      <textarea
+        type="text"
+        class="resize-none w-full border h-[40px] font-SfRegular text-[20px] font-bold"
+        (input)="CustomTitleText($event)"
+        [(ngModel)]="layout.title"
+      ></textarea>
+      <mat-label class="font-SfRegular text-[14px] font-normal">Description</mat-label>
+      <textarea
+        type="text"
+        class="resize-none w-full border font-SfRegular text-[20px] font-normal mb-2"
+        (input)="CustomText($event)"
+        rows="10"
+        cols="10"
+        [(ngModel)]="layout.description"
+      ></textarea>
+    </div>
+  </div>
+  } @else {
+  <section
+    class="flex h-full w-full !space-x-[22px]"
+    data-aos="fade-up"
+    data-aos-easing="linear"
+  >
+    <div class="!min-w-[1240px] !max-h-[517px] !m-0">
+      <img
+        class="w-full h-full"
+        [src]="layout.image_path_blob"
+        [alt]="layout.alt_text"
+      />
+    </div>
+    <div class="p-[100px] h-[517px] w-[614px] !space-y-[50px]">
+      <div class="font-SfSemiBold text-[28px] w-full text-center">
+        {{ layout.title }}
+      </div>
+      <div
+        class="!font-SfLight !text-[20px] !text-justify !m-0 !leading-none !tracking-[0.015em]"
+      >
+        {{ layout.description }}
+      </div>
+    </div>
+  </section>
+  }
+</div>

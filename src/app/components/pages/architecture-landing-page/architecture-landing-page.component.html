@@ -1,0 +1,52 @@
+<ngx-spinner bdColor="rgba(0, 0, 0, 0.8)" size="large" color="#fff" [fullScreen]="true">
+  <p style="color: white">Loading...</p>
+</ngx-spinner>
+@if (isEdit) {
+<app-cms-topbar (preview)="changeMode()" (publish)="onPublish()"></app-cms-topbar>
+}
+<app-topbar [isSidebar]="isSideBar" [isEdit]="isEdit" (toogleSideBar)="sideBarToogle()" (preview)="changeMode()"
+  (publish)="onPublish()"></app-topbar>
+<div class="main-container">
+  <div class="w-full flex-1">
+    <div class="px-[22px] flex flex-col w-full !overflow-visible">
+      <div class="py-[14px] text-[24px] font-SfSemiBold">
+        <span routerLink="/architecture" routerLinkActive="active" (click)="navigateUrl('/architecture')"
+          class="cursor-pointer">Architecture</span>
+      </div>
+      <div class="flex flex-col customCollageGap" [style.gap]='customGap'>
+        @for (item of architectureLayouts; track $index) {
+        @if(item.ar_layout_id === "9"){
+        <app-layout9 [imageName1]="item.images[0]?.ar_image_path" [imageName2]="item.images[1]?.ar_image_path"
+          [imageName3]="item.images[2]?.ar_image_path" [imageName4]="item.images[3]?.ar_image_path"
+          [project_name1]="item.images[0]?.ar_project_name" [project_name2]="item.images[1]?.ar_project_name"
+          [project_name3]="item.images[2]?.ar_project_name" [project_name4]="item.images[3]?.ar_project_name"
+          [project_id1]="item.images[0]?.ar_project_id" [project_id2]="item.images[1]?.ar_project_id"
+          [project_id3]="item.images[2]?.ar_project_id" [project_id4]="item.images[3]?.ar_project_id"
+          [isEdit]="isEdit"
+          [layoutIndex]="$index"
+          (imageUpload)="onImageUpload($event, $index, 0)"
+          (imageDelete)="deleteImage($index, 0)"
+          (titleChange)="onTitleChange($event)"></app-layout9>
+        } @else if(item.ar_layout_id === "10"){
+        <app-layout10 [imageName1]="item.images[0].ar_image_path" [imageName2]="item.images[1].ar_image_path"
+          [imageName3]="item.images[2].ar_image_path" [imageName4]="item.images[3].ar_image_path"
+          [project_name1]="item.images[0].ar_project_name" [project_name2]="item.images[1].ar_project_name"
+          [project_name3]="item.images[2].ar_project_name" [project_name4]="item.images[3].ar_project_name"
+          [project_id1]="item.images[0].ar_project_id" [project_id2]="item.images[1].ar_project_id"
+          [project_id3]="item.images[2].ar_project_id" [project_id4]="item.images[3].ar_project_id" [isEdit]="isEdit"
+          [id]="$index" (getFile)="getFile($event, $index)"></app-layout10>
+        }@else if(item.ar_layout_id === "11"){
+        <app-layout11 [imageName1]="item.images[0].ar_image_path" [imageName2]="item.images[1].ar_image_path"
+          [project_name1]="item.images[0].ar_project_name" [project_name2]="item.images[1].ar_project_name"
+          [project_id1]="item.images[0].ar_project_id" [project_id2]="item.images[1].ar_project_id" [isEdit]="isEdit"
+          [id]="$index" (getFile)="getFile($event, $index)"></app-layout11>
+        }@else {
+        <app-layout30 [imageName1]="item.images[0].ar_image_path" [imageName2]="item.images[1].ar_image_path"
+          [project_name1]="item.images[0].ar_project_name" [project_name2]="item.images[1].ar_project_name"
+          [project_id1]="item.images[0].ar_project_id" [project_id2]="item.images[1].ar_project_id" [isEdit]="isEdit"
+          [id]="$index" (getFile)="getFile($event, $index)"></app-layout30>
+        }}
+      </div>
+    </div>
+  </div>
+</div>

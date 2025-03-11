@@ -1,0 +1,23 @@
+@if(isEdit){
+ <div class="mb-[20px]"> <app-button (btnClick)="imageSelectPopUp(data)" class="z-10" btnLabel="Image Select"></app-button></div>
+}
+<div class="w-full project-slider">
+  <p-carousel [value]="data" (click)="scrollToCenter($event)" [numVisible]="1" [numScroll]="1" [circular]="true"
+    class="carousel-fullscreen">
+    <ng-template let-data pTemplate="item">
+      <div class="p-carousel-item">
+        <img [src]="isBase64(data.image) ? data.image : imageUrl + data.image" loading="lazy" lazyLoad
+          class="w-full h-full gradient drawings-aa img-list" />
+        <!-- class="w-full max-h-[888px] h-full gradient drawings-aa img-list" -->
+        @if(data.drawing_captions !== '.'){
+        <div class="font-SfRegular lg:h-[81px] flex justify-center items-start !text-[20px] sm:px-[100px] px-[22px]">
+          {{data.drawing_captions}}
+        </div>
+        }
+      </div>
+    </ng-template>
+  </p-carousel>
+  <app-slider-image-select [isVisible]="isVisible" [selectedImageData]="data" (onImageChange)="onImageChange($event)"
+    (onCLick)="openAddLayoutDialog()">
+  </app-slider-image-select>
+</div>

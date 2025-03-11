@@ -1,0 +1,77 @@
+<div class="flex lg:flex-row flex-col customCollageGap" [style.gap]="customGap">
+  <div class="w-full">
+    <label for="{{ id + '-0' }}" class="cursor-pointer">
+      <div class="relative group">
+        @if (imageName1) {
+        <img [src]="isBase64(imageName1) ? imageName1 : imageUrl + imageName1" loading="lazy" [alt]="imageName1"
+          class="aspect-[949/1080] w-full gradient" lazyLoad />
+        } @else {
+        <div class="aspect-[949/1080] border flex items-center justify-center font-SfRegular text-[16px] font-normal">
+          Upload Image
+        </div>
+        }
+        @if(isEdit){
+        <div
+          class="absolute inset-0 flex items-center justify-center text-white opacity-0 group-hover:opacity-50 text-[60px] font-bold group-hover:bg-black bg-opacity-25">
+          949 x 1080
+        </div>
+        }
+      </div>
+      @if(isEdit){
+      <input type="file" (change)="setImage($event,0)" accept="image/*" [id]="id + '-0'"
+        class="hidden absolute inset-0 opacity-0 cursor-pointer" />
+      }
+    </label>
+  </div>
+  <div class="w-full flex flex-col customCollageGap" [style.gap]="customGap">
+    <div class="">
+      <label for="{{ id + '-1' }}" class="cursor-pointer">
+        <div class="relative group">
+          @if (imageName2) {
+          <img [src]="isBase64(imageName2) ? imageName2 : imageUrl + imageName2" loading="lazy" [alt]="imageName2"
+            class="!aspect-[949/529] w-full gradient" lazyLoad />
+          }
+          @else {
+          <div class="aspect-[949/529] border flex items-center justify-center font-SfRegular text-[16px] font-normal">
+            Upload Image
+          </div>
+          }
+          @if(isEdit){
+          <div
+            class="absolute inset-0 flex items-center justify-center text-white opacity-0 group-hover:opacity-50 text-[60px] font-bold group-hover:bg-black bg-opacity-25">
+            949 x 529
+          </div>
+          }
+        </div>
+        @if(isEdit){
+        <input type="file" (change)="setImage($event,1)" accept="image/*" [id]="id + '-1'"
+          class="hidden absolute inset-0 opacity-0 cursor-pointer" />
+        }
+      </label>
+    </div>
+    <div>
+      <label for="{{ id + '-2' }}" class="cursor-pointer">
+        <div class="relative group">
+          @if (imageName3) {
+          <img [src]="isBase64(imageName3) ? imageName3 : imageUrl + imageName3" loading="lazy" lazyLoad
+            [alt]="imageName3" class="!aspect-[949/529] w-full gradient" />
+          } @else {
+          <div class="aspect-[949/529] border flex items-center justify-center font-SfRegular text-[16px] font-normal">
+            Upload Image
+          </div>
+          }
+          @if(isEdit){
+          <div
+            class="absolute inset-0 flex items-center justify-center text-white opacity-0 group-hover:opacity-50 text-[60px] font-bold group-hover:bg-black bg-opacity-25">
+            949 x 529
+          </div>
+          }
+        </div>
+        @if(isEdit){
+        <input type="file" (change)="setImage($event,2)" accept="image/*" [id]="id + '-2'"
+          class="hidden absolute inset-0 opacity-0 cursor-pointer" />
+        }
+      </label>
+    </div>
+  </div>
+</div>

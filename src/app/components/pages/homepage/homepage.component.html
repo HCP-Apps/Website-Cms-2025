@@ -1,0 +1,46 @@
+<ngx-spinner
+  bdColor="rgba(0, 0, 0, 0.8)"
+  size="large"
+  color="#fff"
+  [fullScreen]="true"
+>
+  <p style="color: white">Loading...</p>
+</ngx-spinner>
+<p-toast position="top-right"></p-toast>
+@if (isEdit) {
+<app-cms-topbar
+  (preview)="changeMode()"
+  (publish)="onPublish()"
+></app-cms-topbar>
+}
+<app-topbar
+  [isSidebar]="isSideBar"
+  [isEdit]="isEdit"
+  (toogleSideBar)="sideBarToogle()"
+  (preview)="changeMode()"
+  (publish)="onPublish()"
+></app-topbar>
+<app-cover></app-cover>
+<!-- @if (isEdit) { -->
+<app-home-page-builder
+  [isAddLayoutVisible]="isAddLayoutPopupVisible"
+  [isEditLayoutVisible]="isEditLayoutPopupVisible"
+  [isEdit]="isEdit"
+  [layouts]="layouts"
+  (AddLayoutDialog)="openAddLayoutDialog()"
+  (EditLayoutDialog)="openEditLayoutDialog()"
+  (editChangeLayout)="editLayout($event)"
+  (deleteLayout)="deleteLayout($event)"
+  (setImage)="setImage($event)"
+  (changeTitle)="changeTitle($event)"
+  (addLayoutDialog)="openAddLayoutDialog()"
+  (addlayout)="addlayout($event)"
+  (changeDescription)="chnageDescription($event)"
+  (changeAltText)="changeAlt($event)"
+></app-home-page-builder>
+
+<!-- @else {
+  <app-homepage [layouts]="layouts" ></app-homepage>
+} -->
+<app-footer></app-footer>
+<router-outlet></router-outlet>

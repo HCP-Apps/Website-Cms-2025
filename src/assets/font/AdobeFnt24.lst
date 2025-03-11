@@ -1,0 +1,238 @@
+%!Adobe-FontList 1.24
+%Locale:0x409
+
+%BeginFont
+Handler:DirectoryHandler
+FontType:Type1
+FontName:MinionPro-Regular
+FamilyName:Minion Pro
+StyleName:Regular
+FullName:Minion Pro
+MenuName:Minion Pro
+StyleBits:0
+WritingScript:Roman
+OutlineFileName:\\hcp\C10-Communications\Website\HCP Website 2024\Templates\240411\gRIDS\Grids 16_9_isha working file 05 Folder\Document fonts\MinionPro-Regular.otf
+DataFormat:sfntData
+UsesStandardEncoding:yes
+isCFF:yes
+hasSVG:no
+hasCOLR:no
+VariableFontType:NonVariableFont
+FileLength:218640
+FileModTime:1704262920
+WeightClass:400
+WidthClass:5
+AngleClass:0
+DesignSize:110
+NameArray:0,Mac,4,Minion Pro
+NameArray:0,Win,1,Minion Pro
+%EndFont
+
+%BeginFont
+Handler:DirectoryHandler
+FontType:Type1
+FontName:SFProDisplay-Bold
+FamilyName:SF Pro Display
+StyleName:Bold
+FullName:SF Pro Display Bold
+MenuName:SF Pro Display
+StyleBits:0
+WritingScript:Roman
+OutlineFileName:\\hcp\C10-Communications\Website\HCP Website 2024\Templates\240411\gRIDS\Grids 16_9_isha working file 05 Folder\Document fonts\SF-Pro-Display-Bold.otf
+DataFormat:sfntData
+UsesStandardEncoding:yes
+isCFF:yes
+hasSVG:no
+hasCOLR:no
+VariableFontType:NonVariableFont
+FileLength:334728
+FileModTime:1710319318
+WeightClass:700
+WidthClass:5
+AngleClass:0
+NameArray:0,Win,1,SF Pro Display
+NameArray:0,Win,16,SF Pro Display
+%EndFont
+
+%BeginFont
+Handler:DirectoryHandler
+FontType:Type1
+FontName:SFProDisplay-Light
+FamilyName:SF Pro Display
+StyleName:Light
+FullName:SF Pro Display Light
+MenuName:SF Pro Display
+StyleBits:0
+WritingScript:Roman
+OutlineFileName:\\hcp\C10-Communications\Website\HCP Website 2024\Templates\240411\gRIDS\Grids 16_9_isha working file 05 Folder\Document fonts\SF-Pro-Display-Light.otf
+DataFormat:sfntData
+UsesStandardEncoding:yes
+isCFF:yes
+hasSVG:no
+hasCOLR:no
+VariableFontType:NonVariableFont
+FileLength:318908
+FileModTime:1710319357
+WeightClass:300
+WidthClass:5
+AngleClass:0
+NameArray:0,Win,1,SF Pro Display
+NameArray:0,Win,16,SF Pro Display
+%EndFont
+
+%BeginFont
+Handler:DirectoryHandler
+FontType:Type1
+FontName:SFProDisplay-Medium
+FamilyName:SF Pro Display
+StyleName:Medium
+FullName:SF Pro Display Medium
+MenuName:SF Pro Display
+StyleBits:0
+WritingScript:Roman
+OutlineFileName:\\hcp\C10-Communications\Website\HCP Website 2024\Templates\240411\gRIDS\Grids 16_9_isha working file 05 Folder\Document fonts\SF-Pro-Display-Medium.otf
+DataFormat:sfntData
+UsesStandardEncoding:yes
+isCFF:yes
+hasSVG:no
+hasCOLR:no
+VariableFontType:NonVariableFont
+FileLength:335512
+FileModTime:1710319367
+WeightClass:500
+WidthClass:5
+AngleClass:0
+NameArray:0,Win,1,SF Pro Display
+NameArray:0,Win,16,SF Pro Display
+%EndFont
+
+%BeginFont
+Handler:DirectoryHandler
+FontType:Type1
+FontName:SFProDisplay-Regular
+FamilyName:SF Pro Display
+StyleName:Regular
+FullName:SF Pro Display
+MenuName:SF Pro Display
+StyleBits:0
+WritingScript:Roman
+OutlineFileName:\\hcp\C10-Communications\Website\HCP Website 2024\Templates\240411\gRIDS\Grids 16_9_isha working file 05 Folder\Document fonts\SF-Pro-Display-Regular.otf
+DataFormat:sfntData
+UsesStandardEncoding:yes
+isCFF:yes
+hasSVG:no
+hasCOLR:no
+VariableFontType:NonVariableFont
+FileLength:298944
+FileModTime:1710319380
+WeightClass:400
+WidthClass:5
+AngleClass:0
+NameArray:0,Win,1,SF Pro Display
+NameArray:0,Win,16,SF Pro Display
+%EndFont
+
+%BeginFont
+Handler:DirectoryHandler
+FontType:Type1
+FontName:SFProDisplay-Semibold
+FamilyName:SF Pro Display
+StyleName:Semibold
+FullName:SF Pro Display Semibold
+MenuName:SF Pro Display
+StyleBits:0
+WritingScript:Roman
+OutlineFileName:\\hcp\C10-Communications\Website\HCP Website 2024\Templates\240411\gRIDS\Grids 16_9_isha working file 05 Folder\Document fonts\SF-Pro-Display-Semibold.otf
+DataFormat:sfntData
+UsesStandardEncoding:yes
+isCFF:yes
+hasSVG:no
+hasCOLR:no
+VariableFontType:NonVariableFont
+FileLength:335964
+FileModTime:1710319393
+WeightClass:600
+WidthClass:5
+AngleClass:0
+NameArray:0,Win,1,SF Pro Display
+NameArray:0,Win,16,SF Pro Display
+%EndFont
+
+%BeginFont
+Handler:DirectoryHandler
+FontType:Type1
+FontName:SFProText-Bold
+FamilyName:SF Pro Text
+StyleName:Bold
+FullName:SF Pro Text Bold
+MenuName:SF Pro Text
+StyleBits:0
+WritingScript:Roman
+OutlineFileName:\\hcp\C10-Communications\Website\HCP Website 2024\Templates\240411\gRIDS\Grids 16_9_isha working file 05 Folder\Document fonts\SF-Pro-Text-Bold.otf
+DataFormat:sfntData
+UsesStandardEncoding:yes
+isCFF:yes
+hasSVG:no
+hasCOLR:no
+VariableFontType:NonVariableFont
+FileLength:341844
+FileModTime:1710320264
+WeightClass:700
+WidthClass:5
+AngleClass:0
+NameArray:0,Win,1,SF Pro Text
+NameArray:0,Win,16,SF Pro Text
+%EndFont
+
+%BeginFont
+Handler:DirectoryHandler
+FontType:Type1
+FontName:SFProText-Light
+FamilyName:SF Pro Text
+StyleName:Light
+FullName:SF Pro Text Light
+MenuName:SF Pro Text
+StyleBits:0
+WritingScript:Roman
+OutlineFileName:\\hcp\C10-Communications\Website\HCP Website 2024\Templates\240411\gRIDS\Grids 16_9_isha working file 05 Folder\Document fonts\SF-Pro-Text-Light.otf
+DataFormat:sfntData
+UsesStandardEncoding:yes
+isCFF:yes
+hasSVG:no
+hasCOLR:no
+VariableFontType:NonVariableFont
+FileLength:329540
+FileModTime:1710320306
+WeightClass:300
+WidthClass:5
+AngleClass:0
+NameArray:0,Win,1,SF Pro Text
+NameArray:0,Win,16,SF Pro Text
+%EndFont
+
+%BeginFont
+Handler:DirectoryHandler
+FontType:Type1
+FontName:SFProText-Regular
+FamilyName:SF Pro Text
+StyleName:Regular
+FullName:SF Pro Text
+MenuName:SF Pro Text
+StyleBits:0
+WritingScript:Roman
+OutlineFileName:\\hcp\C10-Communications\Website\HCP Website 2024\Templates\240411\gRIDS\Grids 16_9_isha working file 05 Folder\Document fonts\SF-Pro-Text-Regular.otf
+DataFormat:sfntData
+UsesStandardEncoding:yes
+isCFF:yes
+hasSVG:no
+hasCOLR:no
+VariableFontType:NonVariableFont
+FileLength:310148
+FileModTime:1710320327
+WeightClass:400
+WidthClass:5
+AngleClass:0
+NameArray:0,Win,1,SF Pro Text
+NameArray:0,Win,16,SF Pro Text
+%EndFont
+
