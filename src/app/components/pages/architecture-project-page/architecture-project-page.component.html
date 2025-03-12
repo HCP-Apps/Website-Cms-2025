@@ -8,7 +8,8 @@
 <div class="main-container">
   <div class="w-full flex-1 pt-[80px]">
     <div class="px-[22px] py-[14px] text-[24px] font-SfSemiBold">
-      <span (click)="onClickNavigate('/architecture')" class="text-[#727272] cursor-pointer">Architecture |
+      <!-- (click)="onClickNavigate('/architecture')" -->
+      <span class="text-[#727272] cursor-pointer">Architecture |
       </span>
       <span>{{ architectureProjects && architectureProjects[0]?.project_name }}
       </span>
@@ -36,16 +37,12 @@
                   (click)="openDeleteLayoutDialog(item.ar_project_image_id, architectureProjects[0]?.project_id, item.layout_id, i)">
                   <fa-icon [icon]="faTrash"></fa-icon>
                 </button>
-                <app-edit-layout
-                [layoutArray]="layoutArray"
-                [isVisible]="isEditLayoutVisible"
-                (onCLick)="closeEditLayoutDialog()"
-                (selectLayout)="onLayoutReplaceSelected($event)">
-              </app-edit-layout>
+                <app-edit-layout [layoutArray]="layoutArray" [isVisible]="isEditLayoutVisible"
+                  (onCLick)="closeEditLayoutDialog()" (selectLayout)="onLayoutReplaceSelected($event)">
+                </app-edit-layout>
                 <app-delete-layout [isVisible]="isVisible" (onCLick)="openDeleteLayoutDialog()"
                   (onDelete)="onLayoutDelete()">
                 </app-delete-layout>
-
               </div>
               }
               }

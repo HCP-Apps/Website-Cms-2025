@@ -26,28 +26,4 @@ setImage(event: any): void {
     this.getFile.emit(file);
   }
 }
-// setImage(event: any): void {
-//   const input = event.target as HTMLInputElement;
-//   const file = input.files?.[0];
-
-//   if (file) {
-//     const reader = new FileReader();
-
-//     reader.onload = () => {
-//       const img = new Image();
-
-//       img.onload = () => {
-//         if (img.width === 1920 && img.height === 1080) {
-//           this.getFile.emit(file); 
-//         } else {
-//           alert('Please upload an image with dimensions 1920x1080.');
-//         }
-//       };
-
-//       img.src = reader.result as string; 
-//     };
-
-//     reader.readAsDataURL(file); 
-//   }
-// }
 }

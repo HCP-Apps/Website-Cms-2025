@@ -46,24 +46,17 @@ export class Layout5Component implements OnInit {
   ngOnInit(): void {
     this.service.areaProject().subscribe((data: any) => {
       this.areaOptions = data.data;
-      // if (this.data.area) {
-      //   const selectedArea = this.areaOptions.find((option:any) => option.name === this.data.area);
-        
-      //   if (selectedArea) {
-      //     this.data.area = selectedArea;
-      //   }
-      // }
     });
 
     this.service.TagsProject().subscribe((data: any) => {
       this.proejctTags = data.data;
-        this.data.tags = this.data.tags.map((tagName: string) => {
-          const matchingTag = this.proejctTags.find(
-            (tag) =>
-              tag.name.trim().toLowerCase() === tagName.trim().toLowerCase()
-          );
-          return matchingTag || "";
-        });
+      this.data.tags = this.data.tags.map((tagName: string) => {
+        const matchingTag = this.proejctTags.find(
+          (tag) =>
+            tag.name.trim().toLowerCase() === tagName.trim().toLowerCase()
+        );
+        return matchingTag || '';
+      });
     });
   }
 

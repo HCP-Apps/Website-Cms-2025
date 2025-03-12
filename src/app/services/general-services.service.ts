@@ -39,7 +39,12 @@ export class GeneralServicesService {
       { data: data }
     );
   }
-
+  postARPojectPageData(data: Homepage[]): Observable<PostResponse> {
+    return this.http.post<PostResponse>(
+      `${this.Api_Url}/CMS/page_ar_project/update_ar_projects_page.php`,
+      { data: data }
+    );
+  }
   deleteLayout(id: number): Observable<PostResponse> {
     return this.http.delete<PostResponse>(
       `${this.Api_Url}/CMS/homepage/delete_homepage_details.php?id=${id}`

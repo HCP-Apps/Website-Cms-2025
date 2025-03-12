@@ -41,28 +41,24 @@
             @if(isEdit){
             <!-- <input type="text" class="" (change)="CustomAreaText($event)" [(ngModel)]="data.area" />: <input type="text"
               class="" (change)="CustomBuiltupAreaText($event)" [(ngModel)]="data.area" /> -->
-            <p-dropdown [options]="areaOptions" [(ngModel)]="data.area"
-              optionLabel="name"
-              placeholder="Select Area"
+            <p-dropdown [options]="areaOptions" [(ngModel)]="data.area" optionLabel="name" placeholder="Select Area"
               (onChange)="CustomAreaText($event)">
             </p-dropdown>: <input type="text" class="" (change)="CustomBuiltupAreaText($event)"
               [(ngModel)]="data.project_built_up_area" />
             }@else{
-            {{data.area}}: {{ data.area }}
+            {{data.area.name}}: {{ data.area }}
             }
             }
             @else if(route_name === "architecture"){
             @if(isEdit){
             <!-- <input type="text" class="" (change)="CustomAreaText($event)" [(ngModel)]="data.area" />: <input type="text"
               class="" (change)="CustomBuiltupAreaText($event)" [(ngModel)]="data.project_built_up_area" /> -->
-            <p-dropdown [options]="areaOptions" [(ngModel)]="data.area"
-              optionLabel="name"
-              placeholder="Select Area"
+            <p-dropdown [options]="areaOptions" [(ngModel)]="data.area" optionLabel="name" placeholder="Select Area"
               (onChange)="CustomAreaText($event)">
             </p-dropdown>: <input type="text" class="" (change)="CustomBuiltupAreaText($event)"
               [(ngModel)]="data.project_built_up_area" />
             }@else{
-            {{data.area}}: {{ data.project_built_up_area }}
+            {{data.area.name}}: {{ data.project_built_up_area }}
             }
             }
             @else {
@@ -100,6 +96,5 @@
       }
       }
     </div>
-
   </div>
 </div>

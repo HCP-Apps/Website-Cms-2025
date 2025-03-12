@@ -36,6 +36,9 @@ import {
   moveItemInArray,
 } from '@angular/cdk/drag-drop';
 import { DeleteLayoutComponent } from '../../common/dialog/delete-layout/delete-layout.component';
+import { ToasterService } from '../../../services/toaster.service';
+import { MessageService } from 'primeng/api';
+import { ToastModule } from 'primeng/toast';
 
 @Component({
   selector: 'app-architecture-project-page',
@@ -69,14 +72,17 @@ import { DeleteLayoutComponent } from '../../common/dialog/delete-layout/delete-
     CdkDrag,
     CdkDragPlaceholder,
     DeleteLayoutComponent,
+    ToastModule,
   ],
+  providers: [ToasterService, MessageService],
 })
 export class ArchitectureProjectPageComponent implements OnInit {
   constructor(
     private service: GeneralServicesService,
     private spinner: NgxSpinnerService,
     private router: Router,
-    private cdr: ChangeDetectorRef
+    private cdr: ChangeDetectorRef,
+    public msgService: ToasterService
   ) {}
   draggable: boolean = true;
   faPen = faPen;
@@ -132,7 +138,6 @@ export class ArchitectureProjectPageComponent implements OnInit {
         this.spinner.hide();
       });
   }
-  
 
   openDeleteLayoutDialog(
     ar_project_image_id?: any,
@@ -196,50 +201,46 @@ export class ArchitectureProjectPageComponent implements OnInit {
     const selectedLayout = this.layoutArray.find(
       (layout) => layout.layout_id === layoutId.toString()
     );
-  
+
     if (selectedLayout) {
       let newLayout: any;
       if (layoutId === '14') {
         newLayout = {
-          ar_project_image_id: `${new Date().getTime()}`,  
+          ar_project_image_id: `${new Date().getTime()}`,
           layout_id: selectedLayout.layout_id,
-          project_image: [""],
+          project_image: [''],
           slider: [
             {
-              image: "../../../../../assets/Layouts/layout7.jpg"  
-            }
+              image: '../../../../../assets/Layouts/layout7.jpg',
+            },
           ],
-          captions: [
-            [
-              "." 
-            ]
-          ]
+          captions: [['.']],
         };
       } else {
         newLayout = {
           ar_project_image_id: `${new Date().getTime()}`,
           layout_id: selectedLayout.layout_id,
-          project_image: [""], 
+          project_image: [''],
           slider: [],
-          captions: []
+          captions: [],
         };
       }
-  
+
       if (this.architectureProjects.length > 0) {
         this.architectureProjects.push({
           layouts: [newLayout],
         });
       }
-  
+
       this.selectedLayout = null;
       this.closeEditLayoutDialog();
     }
   }
-  
+
   onLayoutReplaceSelected(event: any) {
     if (this.selectedLayoutToReplace) {
       const { index } = this.selectedLayoutToReplace;
-      
+
       const selectedLayout = this.layoutArray.find(
         (layout) => layout.layout_id === event
       );
@@ -250,14 +251,14 @@ export class ArchitectureProjectPageComponent implements OnInit {
             layout_id: selectedLayout.layout_id,
             project_image: [],
             slider: [],
-            captions: []
-          }
+            captions: [],
+          },
         ];
       }
     }
     this.closeEditLayoutDialog();
   }
-  
+
   openEditLayoutDialog(index?: any) {
     this.selectedLayoutToReplace = {
       index,
@@ -329,6 +330,7 @@ export class ArchitectureProjectPageComponent implements OnInit {
     };
     reader.readAsDataURL(file);
   }
+  
   onImageChange(event: any) {
     const { file, index } = event;
 
@@ -365,7 +367,7 @@ export class ArchitectureProjectPageComponent implements OnInit {
     this.architectureProjects[event.index].project_client = event.client;
   }
   areasChange(event: any, index: number) {
-    this.architectureProjects[index].area = event.value;
+    this.architectureProjects[index].title = event.value;
   }
 
   builtupChange(event: any) {
@@ -388,15 +390,17 @@ export class ArchitectureProjectPageComponent implements OnInit {
 
   onPublish() {
     console.log(this.architectureProjects, 'this.architectureProjects');
-    // this.spinner.show();
-    // let isEmpty: boolean = false;
+    this.spinner.show();
+    let isEmpty: boolean = false;
 
-    // this.service.postHomePageData(this.layouts).subscribe((data) => {
-    //   if (data.message === 'success') {
-    //     this.msgService.successToaster('Uploaded successfully');
-    //     this.spinner.hide();
-    //   }
-    // });
+    // this.service
+    //   .postARPojectPageData(this.architectureProjects)
+    //   .subscribe((data) => {
+    //     if (data.message === 'success') {
+    //       this.msgService.successToaster('Uploaded successfully');
+    //       this.spinner.hide();
+    //     }
+    //   });
   }
   sideBarToogle() {
     this.isSideBar = !this.isSideBar;

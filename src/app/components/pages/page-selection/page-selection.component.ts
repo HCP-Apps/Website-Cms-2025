@@ -82,13 +82,16 @@ export class PageSelectionComponent implements OnInit {
   }
   deleteProject(rowData: any) {
     if (rowData.project_type === 'architecture') {
-      this.spinner.show();
+      const confirmed = window.confirm('Are you sure you want to delete this project?');
+      if(confirmed){
+       this.spinner.show();
       this.service
-        .deleteArchProject(rowData.project_id)
-        .subscribe((data: any) => {
-          location.reload();
-          this.spinner.hide();
-        });
+      .deleteArchProject(rowData.project_id)
+      .subscribe((data: any) => {
+        location.reload();
+        this.spinner.hide();
+      });
+     }
     }
   }
   chnageProjectName(event: any) {
