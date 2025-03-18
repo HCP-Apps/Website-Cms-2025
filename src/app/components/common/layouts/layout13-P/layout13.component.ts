@@ -26,12 +26,46 @@ export class Layout13Component {
     return imagePath ? imagePath.startsWith('data:image/') : false;
   }
 
+  // setImage(event: any, index: number): void {
+  //   const input = event.target as HTMLInputElement;
+  //   const file = input.files?.[0];
+
+  //   if (file) {
+  //     this.getFile.emit({ file, index });
+  //   }
+  // }
+  validateImageDimensions(file: File): Promise<boolean> {
+    return new Promise((resolve, reject) => {
+      const reader = new FileReader();
+      reader.onload = (e: any) => {
+        const img = new Image();
+        img.onload = () => {
+          const { width, height } = img;
+
+          if (width === 949 && height === 529) {
+            resolve(true);  
+          } else {
+            reject('Invalid image dimensions. The image must be 949 x 529 pixels.');
+          }
+        };
+        img.src = e.target.result;
+      };
+      reader.readAsDataURL(file);
+    });
+  }
+
   setImage(event: any, index: number): void {
     const input = event.target as HTMLInputElement;
     const file = input.files?.[0];
 
     if (file) {
-      this.getFile.emit({ file, index });
+      this.validateImageDimensions(file)
+        .then(() => {
+          this.getFile.emit({ file, index });
+        })
+        .catch((error) => {
+          alert(error);
+        });
     }
   }
 }

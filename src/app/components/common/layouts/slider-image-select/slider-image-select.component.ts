@@ -47,57 +47,57 @@ export class SliderImageSelectComponent implements OnInit {
     this.onCLick.emit();
   }
 
-  setImage(event: any, index: number): void {
-    const input = event.target as HTMLInputElement;
-    const file = input.files?.[0];
-
-    if (file) {
-      const reader = new FileReader();
-
-      reader.onload = () => {
-        this.selectedImageData[index].image = reader.result as string;
-
-        const updatedImageData = {
-          ...this.selectedImageData[index],
-          image: this.selectedImageData[index].image,
-        };
-        this.onImageChange.emit({ file: updatedImageData, index });
-        this.cdr.detectChanges();
-      };
-
-      reader.readAsDataURL(file);
-    }
-  }
   // setImage(event: any, index: number): void {
   //   const input = event.target as HTMLInputElement;
   //   const file = input.files?.[0];
-  
+
   //   if (file) {
   //     const reader = new FileReader();
-  
+
   //     reader.onload = () => {
-  //       const img = new Image();
-        
-  //       img.onload = () => {
-  //         if (img.width === 1920 && img.height === 888) {
-  //           this.selectedImageData[index].image = reader.result as string;
-  //           const updatedImageData = {
-  //             ...this.selectedImageData[index],
-  //             image: this.selectedImageData[index].image,
-  //           };
-  //           this.onImageChange.emit({ file: updatedImageData, index });
-  //           this.cdr.detectChanges();
-  //         } else {
-  //           alert('Please upload an image with dimensions 1920x888.');
-  //         }
+  //       this.selectedImageData[index].image = reader.result as string;
+
+  //       const updatedImageData = {
+  //         ...this.selectedImageData[index],
+  //         image: this.selectedImageData[index].image,
   //       };
-  
-  //       img.src = reader.result as string;
+  //       this.onImageChange.emit({ file: updatedImageData, index });
+  //       this.cdr.detectChanges();
   //     };
-  
+
   //     reader.readAsDataURL(file);
   //   }
   // }
+  setImage(event: any, index: number): void {
+    const input = event.target as HTMLInputElement;
+    const file = input.files?.[0];
+  
+    if (file) {
+      const reader = new FileReader();
+  
+      reader.onload = () => {
+        const img = new Image();
+        
+        img.onload = () => {
+          if (img.width === 1920 && img.height === 888) {
+            this.selectedImageData[index].image = reader.result as string;
+            const updatedImageData = {
+              ...this.selectedImageData[index],
+              image: this.selectedImageData[index].image,
+            };
+            this.onImageChange.emit({ file: updatedImageData, index });
+            this.cdr.detectChanges();
+          } else {
+            alert('Please upload an image with dimensions 1920x888.');
+          }
+        };
+  
+        img.src = reader.result as string;
+      };
+  
+      reader.readAsDataURL(file);
+    }
+  }
 
   updateCaption(event: any, index: number): void {
     const updatedCaption = event.target.value;

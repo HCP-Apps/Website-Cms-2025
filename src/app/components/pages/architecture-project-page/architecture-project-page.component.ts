@@ -330,7 +330,7 @@ export class ArchitectureProjectPageComponent implements OnInit {
     };
     reader.readAsDataURL(file);
   }
-  
+
   onImageChange(event: any) {
     const { file, index } = event;
 
@@ -393,14 +393,14 @@ export class ArchitectureProjectPageComponent implements OnInit {
     this.spinner.show();
     let isEmpty: boolean = false;
 
-    // this.service
-    //   .postARPojectPageData(this.architectureProjects)
-    //   .subscribe((data) => {
-    //     if (data.message === 'success') {
-    //       this.msgService.successToaster('Uploaded successfully');
-    //       this.spinner.hide();
-    //     }
-    //   });
+    this.service
+      .postARPojectPageData(this.architectureProjects)
+      .subscribe((data) => {
+        if (data.message === 'success') {
+          this.msgService.successToaster('Uploaded successfully');
+          this.spinner.hide();
+        }
+      });
   }
   sideBarToogle() {
     this.isSideBar = !this.isSideBar;
