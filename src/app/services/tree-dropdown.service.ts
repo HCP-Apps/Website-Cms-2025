@@ -546,7 +546,7 @@ export class TreeDropdownService {
                 type: 'EDIT',
                 project_id: urban.project_id,
                 size: '',
-                url: `/urban/${urban.project_id}`,
+                url: `/urbanism/${urban.project_id}`,
               },
             });
           });
@@ -557,7 +557,7 @@ export class TreeDropdownService {
                 type: 'EDIT',
                 project_id: early.project_id,
                 size: '',
-                url: `/urban/${early.project_id}`,
+                url: `/legacy/${early.project_id}`,
               },
             });
           });

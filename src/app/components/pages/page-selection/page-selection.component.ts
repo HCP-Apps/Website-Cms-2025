@@ -16,10 +16,16 @@ import { ButtonComponent } from '../../common/button/button.component';
 import { NgxSpinnerModule, NgxSpinnerService } from 'ngx-spinner';
 import { GeneralServicesService } from '../../../services/general-services.service';
 import { DeleteLayoutComponent } from '../../common/dialog/delete-layout/delete-layout.component';
+import { DropdownModule } from 'primeng/dropdown';
+import { FormsModule } from '@angular/forms';
 
 interface Column {
   field: string;
   header: string;
+}
+interface Layout {
+  name: string;
+  code: string;
 }
 
 @Component({
@@ -38,6 +44,8 @@ interface Column {
     ButtonComponent,
     NgxSpinnerModule,
     DeleteLayoutComponent,
+    DropdownModule,
+    FormsModule,
   ],
 })
 export class PageSelectionComponent implements OnInit {
@@ -49,7 +57,8 @@ export class PageSelectionComponent implements OnInit {
   typeOfProject!: string;
   project_name = '';
   project_id = '';
-
+  layouts: Layout[] | undefined;
+  selectedLayout!: Layout;
   constructor(
     private route: ActivatedRoute,
     private router: Router,
@@ -60,6 +69,10 @@ export class PageSelectionComponent implements OnInit {
 
   ngOnInit(): void {
     this.spinner.show();
+    this.layouts = [
+      { name: 'Layout Image', code: '4' },
+      { name: 'Layout Video/mp4', code: '32' },
+    ];
     this.tree_service.getProjectsFromBackend().subscribe((data: any) => {
       this.files = data;
     });
@@ -70,7 +83,7 @@ export class PageSelectionComponent implements OnInit {
   openClosePopup(project_type: string) {
     this.isVisible = !this.isVisible;
     this.typeOfProject = project_type;
-    if(this.typeOfProject === "architecture"){
+    if (this.typeOfProject === 'architecture') {
       this.service.createNewArchProjectID().subscribe((data: any) => {
         this.project_id = data.project_id;
       });
@@ -80,28 +93,38 @@ export class PageSelectionComponent implements OnInit {
   naviagate(value: string) {
     this.router.navigate([`/${value}`]);
   }
+
   deleteProject(rowData: any) {
     if (rowData.project_type === 'architecture') {
-      const confirmed = window.confirm('Are you sure you want to delete this project?');
-      if(confirmed){
-       this.spinner.show();
-      this.service
-      .deleteArchProject(rowData.project_id)
-      .subscribe((data: any) => {
-        location.reload();
-        this.spinner.hide();
-      });
-     }
+      const confirmed = window.confirm(
+        'Are you sure you want to delete this project?'
+      );
+      if (confirmed) {
+        this.spinner.show();
+        this.service
+          .deleteArchProject(rowData.project_id)
+          .subscribe((data: any) => {
+            location.reload();
+            this.spinner.hide();
+          });
+      }
     }
   }
+
   chnageProjectName(event: any) {
     this.project_name = event.target.value;
   }
+
   popUpNavigate(url: string) {
+    if (!this.project_name || !this.selectedLayout?.code) {
+      alert('Please fill in all the required fields!');
+      this.spinner.hide();
+      return;
+    }
     this.spinner.show();
     if (this.typeOfProject === 'architecture') {
       this.service
-        .createArchProject(this.project_name)
+        .createArchProject(this.project_name, this.selectedLayout.code)
         .subscribe((data: any) => {
           this.naviagate(`/architecture/${this.project_id}`);
           // location.reload();
@@ -111,7 +134,7 @@ export class PageSelectionComponent implements OnInit {
       this.service
         .createUrbanProject(this.project_name)
         .subscribe((data: any) => {
-          this.naviagate('/urban/0');
+          this.naviagate(`/urbanism/${this.project_id}`);
           this.spinner.hide();
         });
     }

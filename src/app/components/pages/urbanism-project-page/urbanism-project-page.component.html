@@ -1,4 +1,98 @@
-<app-topbar [isSidebar]="false" [isEdit]="true" ></app-topbar>
-<div class="flex justify-center items-center w-full h-full">
-    <p class="text-3xl">Urbanism Project Page</p>
-</div>
+@if (isEdit) {
+<app-cms-topbar (preview)="changeMode()" (publish)="onPublish()"></app-cms-topbar>
+}
+<app-topbar [isSidebar]="isSideBar" [isEdit]="isEdit" (toogleSideBar)="sideBarToogle()" (preview)="changeMode()"
+    (publish)="onPublish()"></app-topbar>
+
+<div class="main-container">
+    <div class="w-full pt-[80px] flex-1">
+        <div class="px-[22px] p-[14px] text-[24px] font-SfSemiBold">
+            <span (click)="onClickNavigate('/urbanism')" class="text-[#727272] cursor-pointer">Urbanism |
+            </span>
+            <span>{{ urbanismProjects && urbanismProjects[0].project_name }} </span>
+        </div>
+        <div class="flex flex-col 2xl:space-y-[81px] xl:space-y-[61px] space-y-[40px]">
+            <div *ngFor="let urban of urbanismProjects; let i = index">
+                <div *ngFor="let item of urban.layouts; let j = index">
+                    <ng-container *ngIf="item.layout_id === '4'">
+                        <app-layout4 [imageName]="item.project_image[0]" [id]="i"
+                            (getFile)="onFilesSelected($event, i, item.layout_id)" [isEdit]="isEdit"></app-layout4>
+                    </ng-container>
+                    <ng-container *ngIf="item.layout_id === '6'">
+                        <app-layout12 [imageName1]="item.project_image[0]" [imageName2]="item.project_image[1]"
+                            [imageName3]="item.project_image[2]" [id]="i"
+                            (getFile)="onFilesSelectedLayout($event,i, item.layout_id)"
+                            [isEdit]="isEdit"></app-layout12>
+                    </ng-container>
+                    <ng-container *ngIf="item.layout_id === '7'">
+                        <app-layout6 [imageName1]="item.project_image[0]" [imageName2]="item.project_image[1]"
+                            [imageName3]="item.project_image[2]" [id]="i"
+                            (getFile)="onFilesSelectedLayout($event,i, item.layout_id)" [isEdit]="isEdit"></app-layout6>
+                    </ng-container>
+                    <ng-container *ngIf="item.layout_id === '8'">
+                        <app-layout13 [imageName1]="item.project_image[0]" [imageName2]="item.project_image[1]"
+                            [imageName3]="item.project_image[2]" [imageName4]="item.project_image[3]" [id]="i"
+                            (getFile)="onFilesSelectedLayout($event,i, item.layout_id)"
+                            [isEdit]="isEdit"></app-layout13>
+                    </ng-container>
+                    <ng-container *ngIf="item.layout_id === '9'">
+                        <app-layout15 [imageName1]="item.project_image[0]" [imageName2]="item.project_image[1]"
+                            [imageName3]="item.project_image[2]" [id]="i"
+                            (getFile)="onFilesSelectedLayout($event,i, item.layout_id)"
+                            [isEdit]="isEdit"></app-layout15>
+                    </ng-container>
+                    <ng-container *ngIf="item.layout_id === '10'">
+                        <app-layout14 [imageName1]="item.project_image[0]" [imageName2]="item.project_image[1]"
+                            [imageName3]="item.project_image[2]" [id]="i"
+                            (getFile)="onFilesSelectedLayout($event,i, item.layout_id)"
+                            [isEdit]="isEdit"></app-layout14>
+                    </ng-container>
+                    <ng-container *ngIf="item.layout_id === '11'">
+                        <app-layout16 [imageName1]="item.project_image[0]" [imageName2]="item.project_image[1]" [id]="i"
+                            (getFile)="onFilesSelectedLayout($event,i, item.layout_id)"
+                            [isEdit]="isEdit"></app-layout16>
+                    </ng-container>
+                    <ng-container *ngIf="item.layout_id === '12'">
+                        <app-layout18 [imageName1]="item.project_image[0]" [imageName2]="item.project_image[1]" [id]="i"
+                            (getFile)="onFilesSelectedLayout($event,i, item.layout_id)"
+                            [isEdit]="isEdit"></app-layout18>
+                    </ng-container>
+                    <ng-container *ngIf="item.layout_id === '14'">
+                        <app-layout7 [isEdit]="isEdit" [captions]="item.captions" [data]="item.slider" [id]="i"
+                            (imageChange)="onImageChange($event)"></app-layout7>
+                    </ng-container>
+                    <ng-container *ngIf="item.layout_id === '13'">
+                        <app-layout8 [data]="item.projects"></app-layout8>
+                    </ng-container>
+                    <ng-container *ngIf="item.layout_id === '15'">
+                        <app-layout17 [imageName1]="item.project_image[0]" [imageName2]="item.project_image[1]" [id]="i"
+                            (getFile)="onFilesSelectedLayout($event,i, item.layout_id)"
+                            [isEdit]="isEdit"></app-layout17>
+                    </ng-container>
+                    <ng-container *ngIf="item.layout_id === '31'">
+                        <app-layout31 [autoPlay]="false" [video]="item.project_image[0]" [id]="i" [isEdit]="isEdit"
+                            (getFile)="onFilesVideoSelected($event, i, item.layout_id)"></app-layout31>
+                    </ng-container>
+                    <ng-container *ngIf="item.layout_id === '32'">
+                        <app-layout31 [autoPlay]="false" [video]="item.project_image[0]" [id]="i" [isEdit]="isEdit"
+                            (getFile)="onFilesVideoSelected($event, i, item.layout_id)"></app-layout31>
+                    </ng-container>
+                    @if (urban.project_id) { <app-layout5 route_name="urbanism" [data]="urban" [isEdit]="isEdit"
+                        (titleChange)="changeTitle($event)" (descriptionChange)="changeDescription($event)"
+                        (yearChange)="changeYear($event)" (clientChange)="changeClient($event)"
+                        (areaChange)="areasChange($event,i)" (builtupAreaChange)="builtupChange($event)"
+                        (tagsChange)="onTagsChange($event,i)"></app-layout5> }
+                </div>
+                <!-- } -->
+            </div>
+        </div>
+        @if (isEdit) {
+        <div class="h-[25px] w-full flex justify-end px-[22px] mt-5 mb-5">
+            <button class="bg-[#1565c0] w-[50px] h-[50px] !rounded-full text-white" (click)="openAddLayoutDialog()">
+                +
+            </button>
+        </div>
+        }
+    </div>
+    <app-layout-dialog [layoutArray]="layoutArray" [isVisible]="isAddLayoutPopupVisible"
+        (onCLick)="openAddLayoutDialog()" (selectLayout)="onLayoutSelected($event)"></app-layout-dialog>

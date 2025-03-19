@@ -9,11 +9,11 @@ import { PressNewsComponent } from './components/pages/press-news/press-news.com
 
 export const routes: Routes = [
     {path: "", component: PageSelectionComponent},
-    {path: "homepage", component: HomepageComponent},
-    {path: "press", component: PressNewsComponent},
+    // {path: "homepage", component: HomepageComponent},
+    // {path: "press", component: PressNewsComponent},
     {path: "architecture/:id", component: ArchitectureProjectPageComponent},
-    {path: "urbanism/:id", component: UrbanismProjectPageComponent},
-    {path: "architecture", component: ArchitectureLandingPageComponent},
-    {path: "urbanism", component: UrbanLandingPageComponent},
-    {path: "legacy", component: UrbanLandingPageComponent},
+    // {path: "urbanism/:id", component: UrbanismProjectPageComponent},
+    // {path: "architecture", component: ArchitectureLandingPageComponent},
+    // {path: "urbanism", component: UrbanLandingPageComponent},
+    // {path: "legacy", component: UrbanLandingPageComponent},
 ];

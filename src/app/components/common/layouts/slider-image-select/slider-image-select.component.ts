@@ -37,7 +37,10 @@ export class SliderImageSelectComponent implements OnInit {
   @Output() onImageChange: EventEmitter<any> = new EventEmitter();
   @Output() onCLick: EventEmitter<any> = new EventEmitter();
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    console.log("selectedImageData",this.selectedImageData);
+    
+  }
 
   isBase64(imagePath: any): boolean {
     return typeof imagePath === 'string' && imagePath.startsWith('data:image/') || imagePath.startsWith('../../../../../')

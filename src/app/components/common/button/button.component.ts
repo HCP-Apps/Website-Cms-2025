@@ -9,8 +9,9 @@ import { ButtonModule } from 'primeng/button'
   styleUrl: './button.component.css'
 })
 export class ButtonComponent {
-  @Input() btnLabel! : string
-  @Output() btnClick = new EventEmitter()
+  @Input() btnLabel! : string;
+  @Output() btnClick = new EventEmitter();
+  @Input() disabled: boolean = false;
 
   buttonOnClick() {
     this.btnClick.emit()

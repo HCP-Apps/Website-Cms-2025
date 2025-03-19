@@ -1,0 +1,71 @@
+<!-- @if (autoPlay === true) { -->
+<!-- <video
+  class="gradient"
+  width="100%"
+  height="100%"
+  [autoplay]="true"
+  [loop]="true"
+  controls
+  [muted]="true"
+>
+  <source [src]="videoUrl + video" type="video/mp4" />
+</video> -->
+<div class="video-container">
+  <label for="{{ id }}" class="cursor-pointer">
+    <div class="relative group">
+      @if (video) {
+      <video #videoPlayer width="100%" height="100%" [attr.autoplay]="true" loop>
+        <source [src]=" isBase64(video) ? video : videoUrl + video" type="video/mp4" />
+        {{video}}
+      </video>
+      }@else{
+      <div class="aspect-[1/1] border flex items-center justify-center font-SfRegular text-[16px] font-normal">
+        Upload Video
+      </div>
+      }
+      <div class="custom-controls">
+        <button (click)="togglePlayPause()">
+          <mat-icon *ngIf="isPlaying" fontIcon="pause" class="!text-[#fff] !text-[30px]"></mat-icon>
+          <mat-icon *ngIf="!isPlaying" fontIcon="play_arrow" class="!text-[#fff] !text-[30px]"></mat-icon>
+        </button>
+      </div>
+      @if(isEdit){
+      <div
+        class="absolute inset-0 flex items-center justify-center text-white opacity-0 group-hover:opacity-50 text-[60px] font-bold group-hover:bg-black bg-opacity-25">
+        Video
+        100% X 100%
+      </div>
+      }
+    </div>
+    @if(isEdit){
+    <input type="file" (change)="setVideo($event)" accept="video/mp4" [id]="id"
+      class="hidden absolute inset-0 opacity-0 cursor-pointer" />
+    }
+  </label>
+</div>
+<!-- } -->
+<!-- @else {
+<label for="{{ id }}" class="cursor-pointer">
+  <div class="relative group">
+    @if (video) {
+    <video class="gradient" #videoPlayer width="100%" height="100%" autoplay="true" controls muted="muted">
+      <source [src]=" isBase64(video) ? video : videoUrl + video" type="video/mp4" />
+    </video>
+    }@else{
+    <div class="aspect-[1/1] border flex items-center justify-center font-SfRegular text-[16px] font-normal">
+      Upload Video
+    </div>
+    }
+    @if(isEdit){
+    <div
+      class="absolute inset-0 flex items-center justify-center text-white opacity-0 group-hover:opacity-50 text-[60px] font-bold group-hover:bg-black bg-opacity-25">
+      100% X 100%
+    </div>
+    }
+  </div>
+  @if(isEdit){
+  <input type="file" (change)="setVideo($event)" accept="video/mp4" [id]="id"
+    class="hidden absolute inset-0 opacity-0 cursor-pointer" />
+  }
+</label>
+} -->

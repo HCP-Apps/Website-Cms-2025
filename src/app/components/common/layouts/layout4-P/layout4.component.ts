@@ -15,6 +15,7 @@ export class Layout4Component {
   @Input({ required: true }) imageName!: any;
   @Output() getFile = new EventEmitter<File>();
   @Output() openCropper = new EventEmitter<Event>();
+  
   isBase64(imagePath: string | null): boolean {
     return imagePath ? imagePath.startsWith('data:image/') : false;
   }
@@ -42,4 +43,5 @@ export class Layout4Component {
       reader.readAsDataURL(file);
     }
   }
+
 }

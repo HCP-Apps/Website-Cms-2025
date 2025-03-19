@@ -1,9 +1,4 @@
-<ngx-spinner
-  bdColor="rgba(0, 0, 0, 0.8)"
-  size="large"
-  color="#fff"
-  [fullScreen]="true"
->
+<ngx-spinner bdColor="rgba(0, 0, 0, 0.8)" size="large" color="#fff" [fullScreen]="true">
   <p style="color: white">Loading...</p>
 </ngx-spinner>
 <div class="flex flex-col space-y-10 h-[150vh]">
@@ -17,13 +12,8 @@
   <div class="px-[22px] p-4 flex justify-center items-center">
     <div class="w-[700px] h-[750px] border rounded-md">
       <div class="card">
-        <p-treeTable
-          [value]="files"
-          [columns]="cols"
-          selectionMode="multiple"
-          [(selection)]="selectedNodes"
-          dataKey="name"
-        >
+        <p-treeTable [value]="files" [columns]="cols" selectionMode="multiple" [(selection)]="selectedNodes"
+          dataKey="name">
           <ng-template pTemplate="header">
             <tr>
               <th>Pages</th>
@@ -37,30 +27,18 @@
                   {{ rowData.name }}
                 </div>
                 <div class="flex items-center gap-2">
-                @if (rowData.type === "EDIT") {
-                <p-button
-                  icon="pi pi-pencil"
-                  [rounded]="true"
-                  [outlined]="true"
-                  (onClick)="naviagate(rowData.url)"
-                ></p-button>
-                @if(rowData.project_id){
-                  <p-button
-                  icon="pi pi-trash"
-                  [rounded]="true"
-                  [outlined]="true"
-                  (onClick)="deleteProject(rowData)"
-                ></p-button>
-                }
-                } @else if (rowData.type === "ADD") {
-                <p-button
-                  icon="pi pi-plus"
-                  [rounded]="true"
-                  [outlined]="true"
-                  (onClick)="openClosePopup(rowData.project)"
-                ></p-button>
-                }
-              </div>
+                  @if (rowData.type === "EDIT") {
+                  <p-button icon="pi pi-pencil" [rounded]="true" [outlined]="true"
+                    (onClick)="naviagate(rowData.url)"></p-button>
+                  @if(rowData.project_id){
+                  <p-button icon="pi pi-trash" [rounded]="true" [outlined]="true"
+                    (onClick)="deleteProject(rowData)"></p-button>
+                  }
+                  } @else if (rowData.type === "ADD") {
+                  <p-button icon="pi pi-plus" [rounded]="true" [outlined]="true"
+                    (onClick)="openClosePopup(rowData.project)"></p-button>
+                  }
+                </div>
               </td>
             </tr>
           </ng-template>
@@ -69,23 +47,15 @@
       </div>
     </div>
   </div>
-  <p-dialog
-    header="Add Project Page"
-    [modal]="true"
-    [(visible)]="isVisible"
-    [style]="{ width: '25rem' }"
-    draggable="false"
-  >
+  <p-dialog header="Add Project Page" [modal]="true" [(visible)]="isVisible" [style]="{ width: '25rem' }"
+    draggable="false">
     <div class="space-y-10 h-[80px] flex flex-col justify-between">
       <p>Project Name</p>
-      <input
-        id="project-name"
-        type="text"
-        pInputText
-        size="small"
-        class="w-full !max-h-[40px]"
-        (input)="chnageProjectName($event)"
-      />
+      <input id="project-name" type="text" pInputText size="small" class="w-full !max-h-[40px]"
+        (input)="chnageProjectName($event)" />
+    </div>
+    <div class="space-y-10 h-[80px] flex flex-col justify-between">
+      <p-dropdown [options]="layouts" optionLabel="name" placeholder="Select a Type" [(ngModel)]="selectedLayout" [style]="{ width: '100%' }" />
     </div>
     <div class="flex mt-4 justify-end items-center">
       <app-button (btnClick)="popUpNavigate('')" btnLabel="OK"></app-button>

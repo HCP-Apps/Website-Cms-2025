@@ -10,8 +10,7 @@ import { PostResponse } from '../interfaces/post-response';
 export class GeneralServicesService {
   constructor(private http: HttpClient) {}
   // Api_Url = 'https://hcpinteractive.com/HCP_Website';
-  Api_Url =
-    'https://versatilesolutions.co.in/hcp.co.in/HCP_CMS_demo/HCP_Website';
+  Api_Url = 'https://hcp.co.in/hcpcms/HCP_Website';
   // Api_Url = 'https://hcp.co.in/HCP_Website';
 
   // home page crud operations
@@ -51,6 +50,12 @@ export class GeneralServicesService {
     );
   }
 
+  getUrbanismprojectPageData(id?: string): Observable<any> {
+    return this.http.get<any>(
+      `${this.Api_Url}/CMS/page_ur_project/get_ur_project.php?id=${id}`
+    );
+  }
+
   createUrbanProject(name: string) {
     return this.http.get(
       `${this.Api_Url}/CMS/DashBord/add_urbanism_project_name.php?ur_project_name=${name}`
@@ -76,9 +81,9 @@ export class GeneralServicesService {
     );
   }
 
-  createArchProject(name: string) {
+  createArchProject(name: string,layout_id:any) {
     return this.http.get(
-      `${this.Api_Url}/CMS/DashBord/add_architecture_project.php?ar_project_name=${name}`
+      `${this.Api_Url}/CMS/DashBord/add_architecture_project.php?ar_project_name=${name}&lauout_id=${layout_id}`
     );
   }
   createNewArchProjectID() {

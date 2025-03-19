@@ -1,12 +1,16 @@
+<ngx-spinner bdColor="rgba(0, 0, 0, 0.8)" size="large" color="#fff" [fullScreen]="true">
+  <p style="color: white">Loading...</p>
+</ngx-spinner>
 @if (isEdit) {
-<app-cms-topbar (preview)="changeMode()" (publish)="onPublish()"></app-cms-topbar>
+<app-cms-topbar (preview)="changeMode()" [hasChanges]="hasChanges" (publish)="onPublish()"></app-cms-topbar>
 }
 <app-topbar [isSidebar]="isSideBar" [isEdit]="isEdit" (toogleSideBar)="sideBarToogle()" (preview)="changeMode()"
   (publish)="onPublish()"></app-topbar>
+<p-toast position="top-right"></p-toast>
 <!-- 
 <app-architecture-landing-page-builder [layouts]="dummyArrayOfLayouts" ></app-architecture-landing-page-builder> -->
 <div class="main-container">
-  <div class="w-full flex-1 pt-[80px]">
+  <div class="w-full flex-1">
     <div class="px-[22px] py-[14px] text-[24px] font-SfSemiBold">
       <!-- (click)="onClickNavigate('/architecture')" -->
       <span class="text-[#727272] cursor-pointer">Architecture |
@@ -34,11 +38,12 @@
                 </button>
                 <button mat-flat-button color="primary"
                   [ngStyle]="{ 'background-color': '#1976D2','width':'50px','padding':'10px','border-radius':'4px' }"
-                  (click)="openDeleteLayoutDialog(item.ar_project_image_id, architectureProjects[0]?.project_id, item.layout_id, i)">
+                  (click)="openDeleteLayoutDialog(i)">
                   <fa-icon [icon]="faTrash"></fa-icon>
                 </button>
                 <app-edit-layout [layoutArray]="layoutArray" [isVisible]="isEditLayoutVisible"
-                  (onCLick)="closeEditLayoutDialog()" (selectLayout)="onLayoutReplaceSelected($event)">
+                  (onCLick)="closeEditLayoutDialog()"
+                  (selectLayout)="onLayoutReplaceSelected($event)">
                 </app-edit-layout>
                 <app-delete-layout [isVisible]="isVisible" (onCLick)="openDeleteLayoutDialog()"
                   (onDelete)="onLayoutDelete()">
@@ -104,6 +109,10 @@
                 <app-layout17 [imageName1]="item.project_image[0]" [imageName2]="item.project_image[1]" [id]="i"
                   (getFile)="onFilesSelectedLayout($event,i, item.layout_id)" [isEdit]="isEdit">
                 </app-layout17>
+              </ng-container>
+              <ng-container *ngIf="item.layout_id === '31'">
+                <app-layout31 [autoPlay]="false" [video]="item.project_image[0]" [id]="i" [isEdit]="isEdit"
+                  (getFile)="onFilesVideoSelected($event, i, item.layout_id)"></app-layout31>
               </ng-container>
               <ng-container *ngIf="arch.project_id">
                 <app-layout5 route_name="architecture" [data]="arch" [isEdit]="isEdit"

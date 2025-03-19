@@ -22,9 +22,9 @@
 
                 <label for="{{ 'image-input-' + i }}" class="cursor-pointer">
                     <div class="relative group">
-                        <div
+                        <div *ngIf="i > 0" 
                             class="flex justify-end gap-[10px] m-[10px] rounded-sm top-0 right-0 absolute text-white z-[1]">
-                            <button mat-flat-button color="primary"
+                            <button  mat-flat-button color="primary"
                                 [ngStyle]="{ 'background-color': '#1976D2','width':'50px','padding':'10px','border-radius':'4px' }"
                                 (click)="openDeleteImage(i)">
                                 <fa-icon [icon]="faTrash"></fa-icon>

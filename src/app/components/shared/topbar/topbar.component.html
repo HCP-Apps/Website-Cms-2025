@@ -1,33 +1,44 @@
-<div
-  (mouseenter)="hoverOn()"
-  (mouseleave)="hoverOff()"
-  class="flex justify-between max-w-full w-full h-[80px] bg-white items-center px-[22px] top-navbar z-[999]"
-  [class.fixed]="!isEdit"
-  [class.top-navbar]="!isEdit"
-  [class.z-[999]]="!isEdit"
->
-  <div class="nav-logo">
-    <img src="../../../../assets/HCP-Logo-376150.png" class="h-[36px]" />
+@if(isEdit === true){
+  <div (mouseenter)="hoverOn()" (mouseleave)="hoverOff()"
+    class="fixed top-navbar z-[1054] h-[150px] w-full px-[22px] bg-white" [class.fixed]="!isEdit"
+    [class.top-navbar]="!isEdit" [class.z-[999]]="!isEdit">
+    <div class="w-full h-full">
+      <div class="flex justify-between max-w-full w-full h-full items-center">
+        <div class="nav-logo">
+          <img src="../../../../assets/HCP-Logo-376150.png" class="h-[36px]" />
+        </div>
+  
+        <div class="flex space-x-[35px] items-center relative">
+          <div class="flex justify-between items-center gap-2">
+            <img class="h-[24px]" src="../../../../assets/search.png" />
+            <img (click)="toogleClick()" class="h-[24px] cursor-pointer" src="../../../../assets/Hamburger.png" />
+          </div>
+        </div>
+      </div>
+    </div>
   </div>
+}@else{
+  <div (mouseenter)="hoverOn()" (mouseleave)="hoverOff()"
+  class="fixed top-navbar z-[1054] h-[80px] w-full px-[22px] bg-white" [class.fixed]="!isEdit"
+  [class.top-navbar]="!isEdit" [class.z-[999]]="!isEdit">
+  <div class="w-full h-full">
+    <div class="flex justify-between max-w-full w-full h-full items-center">
+      <div class="nav-logo">
+        <img src="../../../../assets/HCP-Logo-376150.png" class="h-[36px]" />
+      </div>
 
-  <div class="flex sm:space-x-[32px] space-x-[10px] items-center">
-    @if (isEdit === false && showBtn) {
-    <app-button btnLabel="Publish" (btnClick)="onPublish()"></app-button>
-    <app-button btnLabel="Edit" (btnClick)="onPreview()"></app-button>
-    } @if (isSidebar == true) {
-    <img class="h-[24px]" src="../../../../assets/search.png" />
-    <img
-      (click)="toogleClick()"
-      class="h-[24px] cursor-pointer"
-      src="../../../../assets/Xmark.1024.png"
-    />
-    } @else {
-    <img class="h-[24px]" src="../../../../assets/search.png" />
-    <img
-      (click)="toogleClick()"
-      class="h-[24px] cursor-pointer"
-      src="../../../../assets/Hamburger.png"
-    />
-    }
+      <div class="flex space-x-[35px] items-center relative">
+        <div class="flex justify-between items-center gap-2">
+          @if (isEdit === false && showBtn) {
+          <app-button (btnClick)="navigateToDashboard()" btnLabel="Dashboard"></app-button>
+          <app-button btnLabel="Publish" (btnClick)="onPublish()"></app-button>
+          <app-button btnLabel="Edit" (btnClick)="onPreview()"></app-button>
+          } 
+          <img class="h-[24px]" src="../../../../assets/search.png" />
+          <img (click)="toogleClick()" class="h-[24px] cursor-pointer" src="../../../../assets/Hamburger.png" />
+        </div>
+      </div>
+    </div>
   </div>
 </div>
+}
