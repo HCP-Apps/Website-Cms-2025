@@ -6,13 +6,15 @@ import { UrbanismProjectPageComponent } from './components/pages/urbanism-projec
 import { ArchitectureLandingPageComponent } from './components/pages/architecture-landing-page/architecture-landing-page.component';
 import { UrbanLandingPageComponent } from './components/pages/urban-landing-page/urban-landing-page.component';
 import { PressNewsComponent } from './components/pages/press-news/press-news.component';
+import { EarlyProjectPageComponent } from './components/pages/early-project-page/early-project-page.component';
 
 export const routes: Routes = [
     {path: "", component: PageSelectionComponent},
     // {path: "homepage", component: HomepageComponent},
     // {path: "press", component: PressNewsComponent},
     {path: "architecture/:id", component: ArchitectureProjectPageComponent},
-    // {path: "urbanism/:id", component: UrbanismProjectPageComponent},
+    {path: "urbanism/:id", component: UrbanismProjectPageComponent},
+    {path: "legacy/:id", component: EarlyProjectPageComponent},
     // {path: "architecture", component: ArchitectureLandingPageComponent},
     // {path: "urbanism", component: UrbanLandingPageComponent},
     // {path: "legacy", component: UrbanLandingPageComponent},

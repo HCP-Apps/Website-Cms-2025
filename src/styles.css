@@ -919,3 +919,8 @@ video {
   border: none !important;
   cursor: pointer;
 }
+
+/* layout5 css */
+.tags .p-multiselect{
+  min-width: 250px;
+}

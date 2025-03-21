@@ -117,7 +117,20 @@ export class ArchitectureProjectPageComponent implements OnInit {
     { layout_id: '12', image: '../../../../assets/Layouts/layout18.jpg' },
     { layout_id: '31', image: '../../../../assets/Layouts/layout31.jpg' },
   ];
-
+  // layoutArray: any[] = [
+  //   { layout_id: '4', image: './assets/Layouts/layout4.jpg' },
+  //   // { layout_id: '5', image: './assets/Layouts/layout5.jpg' },
+  //   { layout_id: '7', image: './assets/Layouts/layout6.jpg' },
+  //   { layout_id: '14', image: './assets/Layouts/layout7.jpg' },
+  //   { layout_id: '6', image: './assets/Layouts/layout12.jpg' },
+  //   { layout_id: '8', image: './assets/Layouts/layout13.jpg' },
+  //   { layout_id: '10', image: './assets/Layouts/layout14.jpg' },
+  //   { layout_id: '9', image: './assets/Layouts/layout15.jpg' },
+  //   { layout_id: '11', image: './assets/Layouts/layout16.jpg' },
+  //   { layout_id: '15', image: './assets/Layouts/layout17.jpg' },
+  //   { layout_id: '12', image: './assets/Layouts/layout18.jpg' },
+  //   { layout_id: '31', image: './assets/Layouts/layout31.jpg' },
+  // ];
   ngOnInit(): void {
     this.fetchData();
   }
@@ -181,6 +194,7 @@ export class ArchitectureProjectPageComponent implements OnInit {
           slider: [
             {
               image: '../../../../../assets/Layouts/layout7.jpg',
+              // image: './../assets/Layouts/layout7.jpg',
             },
           ],
           captions: [['.']],
@@ -190,6 +204,7 @@ export class ArchitectureProjectPageComponent implements OnInit {
           ar_project_image_id: ``,
           layout_id: selectedLayout.layout_id,
           project_image: ['../../../../../assets/Layouts/layout31.jpg'],
+          // project_image: ['./../assets/Layouts/layout31.jpg'],
           slider: [],
           captions: [],
         };
@@ -232,6 +247,7 @@ export class ArchitectureProjectPageComponent implements OnInit {
             slider: [
               {
                 image: '../../../../../assets/Layouts/layout7.jpg',
+                // image: './../assets/Layouts/layout7.jpg',
               },
             ],
             captions: [],
@@ -243,6 +259,7 @@ export class ArchitectureProjectPageComponent implements OnInit {
             ar_project_image_id: ar_project_image_id,
             layout_id: selectedLayout.layout_id,
             project_image: ['../../../../../assets/Layouts/layout31.jpg'],
+            // project_image: ['./../assets/Layouts/layout31.jpg'],
             slider: [],
             captions: [],
           },
@@ -399,7 +416,7 @@ export class ArchitectureProjectPageComponent implements OnInit {
   changeDescription(event: any) {
     this.hasChanges = true;
     this.architectureProjects[event.index].project_description =
-      event.description;
+      event.description.replace(/Â/g, '');
   }
 
   changeYear(event: any) {

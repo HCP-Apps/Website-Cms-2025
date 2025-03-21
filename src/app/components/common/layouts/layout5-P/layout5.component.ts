@@ -6,6 +6,7 @@ import { Router } from '@angular/router';
 import { GeneralServicesService } from '../../../../services/general-services.service';
 import { DropdownModule } from 'primeng/dropdown';
 import { MultiSelectModule } from 'primeng/multiselect';
+import { ButtonComponent } from '../../button/button.component';
 
 @Component({
   selector: 'app-layout5',
@@ -16,6 +17,7 @@ import { MultiSelectModule } from 'primeng/multiselect';
     CommonModule,
     DropdownModule,
     MultiSelectModule,
+    ButtonComponent
   ],
   templateUrl: './layout5.component.html',
   styleUrl: './layout5.component.css',
@@ -63,22 +65,42 @@ export class Layout5Component implements OnInit {
   CustomTitleText(event: any) {
     this.titleChange.emit(event.target.value);
   }
+  
   CustomDescriptionText(event: any) {
     this.descriptionChange.emit(event.target.value);
   }
+
   CustomYearText(event: any) {
     this.yearChange.emit(event.target.value);
   }
+
   CustomClientText(event: any) {
     this.clientChange.emit(event.target.value);
   }
+
   CustomAreaText(event: any) {
     this.areaChange.emit(event.value.name);
   }
+
   CustomBuiltupAreaText(event: any) {
     this.builtupAreaChange.emit(event.target.value);
   }
+
   onTagsChange(event: any) {
     this.tagsChange.emit(this.data.tags);
   }
+
+  AddParaGap() {
+    if (this.data.project_description) {
+      const hasTwoBreaksAtEnd = /(<br\s*\/?>){2}$/i.test(this.data.project_description);
+  
+      if (!hasTwoBreaksAtEnd) {
+        this.data.project_description += '<br /><br />';
+      }
+    } else {
+      this.data.project_description = '<br /><br />';
+    }
+    this.descriptionChange.emit(this.data.project_description);
+  }
+  
 }

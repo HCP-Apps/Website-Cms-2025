@@ -24,8 +24,8 @@ interface Column {
   header: string;
 }
 interface Layout {
-  name: string;
-  code: string;
+  name: any;
+  code: any;
 }
 
 @Component({
@@ -71,7 +71,7 @@ export class PageSelectionComponent implements OnInit {
     this.spinner.show();
     this.layouts = [
       { name: 'Layout Image', code: '4' },
-      { name: 'Layout Video/mp4', code: '32' },
+      { name: 'Layout Video/mp4', code: '31' },
     ];
     this.tree_service.getProjectsFromBackend().subscribe((data: any) => {
       this.files = data;
@@ -85,6 +85,14 @@ export class PageSelectionComponent implements OnInit {
     this.typeOfProject = project_type;
     if (this.typeOfProject === 'architecture') {
       this.service.createNewArchProjectID().subscribe((data: any) => {
+        this.project_id = data.project_id;
+      });
+    } else if (this.typeOfProject === 'urbanism') {
+      this.service.createNewUrbnProjectID().subscribe((data: any) => {
+        this.project_id = data.project_id;
+      });
+    } else if (this.typeOfProject === 'legacy') {
+      this.service.createNewEarlyProjectID().subscribe((data: any) => {
         this.project_id = data.project_id;
       });
     }
@@ -108,11 +116,37 @@ export class PageSelectionComponent implements OnInit {
             this.spinner.hide();
           });
       }
+    } else if (rowData.project_type === 'urbanism') {
+      const confirmed = window.confirm(
+        'Are you sure you want to delete this project?'
+      );
+      if (confirmed) {
+        this.spinner.show();
+        this.service
+          .deleteUrbnProject(rowData.project_id)
+          .subscribe((data: any) => {
+            location.reload();
+            this.spinner.hide();
+          });
+      }
+    }else if (rowData.project_type === 'legacy') {
+      const confirmed = window.confirm(
+        'Are you sure you want to delete this project?'
+      );
+      if (confirmed) {
+        this.spinner.show();
+        this.service
+          .deleteEarlyProject(rowData.project_id)
+          .subscribe((data: any) => {
+            location.reload();
+            this.spinner.hide();
+          });
+      }
     }
   }
 
   chnageProjectName(event: any) {
-    this.project_name = event.target.value;
+    this.project_name = event.target.value.replace(/\s+/g, ' ').trim();
   }
 
   popUpNavigate(url: string) {
@@ -124,17 +158,36 @@ export class PageSelectionComponent implements OnInit {
     this.spinner.show();
     if (this.typeOfProject === 'architecture') {
       this.service
-        .createArchProject(this.project_name, this.selectedLayout.code)
+        .createArchProject(
+          this.project_name,
+          this.selectedLayout.code,
+          this.project_id
+        )
         .subscribe((data: any) => {
           this.naviagate(`/architecture/${this.project_id}`);
           // location.reload();
           this.spinner.hide();
         });
-    } else {
+    } else if (this.typeOfProject === 'architecture') {
       this.service
-        .createUrbanProject(this.project_name)
+        .createUrbanProject(
+          this.project_name,
+          this.selectedLayout.code,
+          this.project_id
+        )
         .subscribe((data: any) => {
           this.naviagate(`/urbanism/${this.project_id}`);
+          this.spinner.hide();
+        });
+    } else if (this.typeOfProject === 'legacy') {
+      this.service
+        .createEarlyProject(
+          this.project_name,
+          this.selectedLayout.code,
+          this.project_id
+        )
+        .subscribe((data: any) => {
+          this.naviagate(`/legacy/${this.project_id}`);
           this.spinner.hide();
         });
     }

@@ -110,8 +110,8 @@
                   (getFile)="onFilesSelectedLayout($event,i, item.layout_id)" [isEdit]="isEdit">
                 </app-layout17>
               </ng-container>
-              <ng-container *ngIf="item.layout_id === '31'">
-                <app-layout31 [autoPlay]="false" [video]="item.project_image[0]" [id]="i" [isEdit]="isEdit"
+              <ng-container *ngIf="item.layout_id === '31' || item.layout_id === '32'">
+                <app-layout31 [autoPlay]="true" [video]="item.project_image[0]" [id]="i" [isEdit]="isEdit"
                   (getFile)="onFilesVideoSelected($event, i, item.layout_id)"></app-layout31>
               </ng-container>
               <ng-container *ngIf="arch.project_id">
@@ -128,7 +128,7 @@
       </div>
     </div>
     @if (isEdit) {
-    <div class="h-[25px] w-full flex justify-end px-[22px] mt-5 mb-5">
+    <div class="h-[25px] w-full flex justify-end px-[22px] mt-5 mb-[35px]">
       <button class="bg-[#1565c0] w-[50px] h-[50px] !rounded-full text-white" (click)="openAddLayoutDialog()">
         +
       </button>

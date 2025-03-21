@@ -54,8 +54,8 @@
       <input id="project-name" type="text" pInputText size="small" class="w-full !max-h-[40px]"
         (input)="chnageProjectName($event)" />
     </div>
-    <div class="space-y-10 h-[80px] flex flex-col justify-between">
-      <p-dropdown [options]="layouts" optionLabel="name" placeholder="Select a Type" [(ngModel)]="selectedLayout" [style]="{ width: '100%' }" />
+    <div class="space-y-10 h-[80px] flex flex-col justify-between mt-[10px]">
+      <p-dropdown [options]="layouts" optionLabel="name" placeholder="Select Layout Type" [(ngModel)]="selectedLayout" [style]="{ width: '100%' }" />
     </div>
     <div class="flex mt-4 justify-end items-center">
       <app-button (btnClick)="popUpNavigate('')" btnLabel="OK"></app-button>

@@ -9,9 +9,11 @@
     </div>
     <div class="font-SfLight sm:text-[22px] text-[16px] mb-[54px] text-left ">
       @if(isEdit){
-      <textarea type="text"
+      <textarea type="text" placeholder="Add Description"
         class="resize-none w-full border text-black font-SfLight font-normal text-[20px] flex justify-center !m-0 mac-screen-subtext mb-2"
         (change)="CustomDescriptionText($event)" rows="5" cols="10" [(ngModel)]="data.project_description"></textarea>
+      <app-button *ngIf="isEdit" (btnClick)="AddParaGap()" class="z-10" btnLabel="Add Paragraph Gap">
+      </app-button>
       }@else{
       <p [innerHTML]="data.project_description" class=""></p>
       }
@@ -20,31 +22,28 @@
       <div class="mb-[24px]">
         <div class="font-SfLight sm:text-[22px] text-[16px]">
           <p class="">
-            @if(data.project_year){
             Year: @if(isEdit){
-            <input type="text" class="" (change)="CustomYearText($event)" [(ngModel)]="data.project_year" />
+            <input type="text" placeholder="Add year" class="" (change)="CustomYearText($event)"
+              [(ngModel)]="data.project_year" />
             }@else{
             {{ data.project_year }}
             }
             <br />
-            }
-            @if(data.project_client){
             Client: @if(isEdit){
-            <input type="text" class="" (change)="CustomClientText($event)" [(ngModel)]="data.project_client" />
+            <input type="text" placeholder="Add client" class="" (change)="CustomClientText($event)"
+              [(ngModel)]="data.project_client" />
             }@else{
             {{ data.project_client }}
             }
             <br />
-            }
-            @if(data.project_built_up_area){
             @if (route_name === "urbanism") {
             @if(isEdit){
             <!-- <input type="text" class="" (change)="CustomAreaText($event)" [(ngModel)]="data.area" />: <input type="text"
               class="" (change)="CustomBuiltupAreaText($event)" [(ngModel)]="data.area" /> -->
             <p-dropdown [options]="areaOptions" [(ngModel)]="data.area" optionLabel="name" placeholder="Select Area"
               (onChange)="CustomAreaText($event)">
-            </p-dropdown>: <input type="text" class="" (change)="CustomBuiltupAreaText($event)"
-              [(ngModel)]="data.project_built_up_area" />
+            </p-dropdown>: <input placeholder="Add Built-up" type="text" class=""
+              (change)="CustomBuiltupAreaText($event)" [(ngModel)]="data.project_built_up_area" />
             }@else{
             {{data.area.name}}: {{ data.area }}
             }
@@ -53,17 +52,36 @@
             @if(isEdit){
             <!-- <input type="text" class="" (change)="CustomAreaText($event)" [(ngModel)]="data.area" />: <input type="text"
               class="" (change)="CustomBuiltupAreaText($event)" [(ngModel)]="data.project_built_up_area" /> -->
-            <p-dropdown [options]="areaOptions" [(ngModel)]="data.area" optionLabel="name" placeholder="Select Area"
-              (onChange)="CustomAreaText($event)">
-            </p-dropdown>: <input type="text" class="" (change)="CustomBuiltupAreaText($event)"
+            <p-dropdown [options]="areaOptions" class="!p-0" [(ngModel)]="data.area" optionLabel="name"
+              placeholder="Select Area" (onChange)="CustomAreaText($event)">
+            </p-dropdown>: <input type="text" placeholder="Add Area" class="" (change)="CustomBuiltupAreaText($event)"
               [(ngModel)]="data.project_built_up_area" />
             }@else{
             {{data.area.name}}: {{ data.project_built_up_area }}
             }
+            }@else if(route_name === "urbanism"){
+              @if(isEdit){
+                <!-- <input type="text" class="" (change)="CustomAreaText($event)" [(ngModel)]="data.area" />: <input type="text"
+                  class="" (change)="CustomBuiltupAreaText($event)" [(ngModel)]="data.project_built_up_area" /> -->
+                <p-dropdown [options]="areaOptions" class="!p-0" [(ngModel)]="data.area" optionLabel="name"
+                  placeholder="Select Area" (onChange)="CustomAreaText($event)">
+                </p-dropdown>: <input type="text" placeholder="Add Area" class="" (change)="CustomBuiltupAreaText($event)"
+                  [(ngModel)]="data.project_built_up_area" />
+                }@else{
+                {{data.area.name}}: {{ data.project_built_up_area }}
+                }
             }
-            @else {
-            Built-up Area: {{ data.project_built_up_area }}
-            }
+            @else if(route_name === "legacy"){
+              @if(isEdit){
+                <!-- <input type="text" class="" (change)="CustomAreaText($event)" [(ngModel)]="data.area" />: <input type="text"
+                  class="" (change)="CustomBuiltupAreaText($event)" [(ngModel)]="data.project_built_up_area" /> -->
+                <p-dropdown [options]="areaOptions" class="!p-0" [(ngModel)]="data.area" optionLabel="name"
+                  placeholder="Select Area" (onChange)="CustomAreaText($event)">
+                </p-dropdown>: <input type="text" placeholder="Add Area" class="" (change)="CustomBuiltupAreaText($event)"
+                  [(ngModel)]="data.project_built_up_area" />
+                }@else{
+                {{data.area.name}}: {{ data.project_built_up_area }}
+                }
             }
           </p>
         </div>
@@ -86,7 +104,8 @@
     </div> -->
     <div class="flex sm:flex-row flex-col items-center gap-[10px]">
       @if(isEdit){
-      <p-multiSelect [options]="proejctTags" [(ngModel)]="data.tags" optionLabel="name" placeholder="Select Tags" />
+      <p-multiSelect class="tags" [options]="proejctTags" [(ngModel)]="data.tags" optionLabel="name"
+        placeholder="Select Tags" />
       } @else {
       @for (item of data.tags; track $index) {
       <a
